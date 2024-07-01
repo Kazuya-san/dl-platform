@@ -22,7 +22,7 @@ export default async function ProfileClient() {
   // }
 
   return (
-    <div className="flex px-8 gap-4 justify-center flex-wrap h-[calc(100vh-85px)]">
+    <div className="flex flex-col md:flex-row px-8 gap-4 justify-center md:flex-wrap md:h-[calc(100vh-85px)]">
       {/* {new Array(6).fill(1).map((i, index) => (
         <GameCard
           key={index * i}

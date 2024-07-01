@@ -7,7 +7,7 @@ export default async function MatchFinder() {
   });
 
   return (
-    <div className="flex px-8 gap-4 justify-center flex-wrap h-[calc(100vh-85px)]">
+    <div className="flex flex-col md:flex-row px-8 gap-4 justify-center md:flex-wrap md:h-[calc(100vh-85px)]">
       {tournaments.map((i: any, index: number) => (
         <GameCard
           key={index}

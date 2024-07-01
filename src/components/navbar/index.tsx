@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { NavbarLinks } from "./NavbarLinks";
+import { NavbarLinks, navbarLinks } from "./NavbarLinks";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,11 +13,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TbLogout } from "react-icons/tb";
 
 export function Navbar() {
   const { user, isLoading } = useUser();
   return (
-    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center px-8 lg:px-12 mx-auto h-full max-h-[70px] backdrop-blur-lg z-[10]">
+    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center px-8 lg:px-14 mx-auto h-full max-h-[70px] backdrop-blur-lg z-[10]">
       <div className="flex items-center md:col-span-3">
         <Link href="/dashboard">
           {/*  eslint-disable-next-line @next/next/no-img-element */}
@@ -43,10 +44,26 @@ export function Navbar() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="cursor-pointer">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
+              {/* <DropdownMenuSeparator /> */}
+              {navbarLinks.map((item) => (
+                <DropdownMenuItem key={item.id}>
+                  <Link
+                    href={item.href}
+                    className="group flex items-center px-4 py-2 font-semibold rounded-md gap-x-1"
+                  >
+                    {item.icon}
+                    {item.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
               <DropdownMenuItem>
-                <a href="/api/auth/logout">Logout</a>
+                <a
+                  href="/api/auth/logout"
+                  className="group flex items-center px-4 py-2 font-semibold rounded-md gap-x-1"
+                >
+                  <TbLogout size={24} />
+                  Logout
+                </a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

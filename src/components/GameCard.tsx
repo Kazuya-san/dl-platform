@@ -48,7 +48,7 @@ const GameCard: React.FC<GameCardProps> = ({
 }) => {
   return (
     <Card
-      className="w-[32%] h-[300px] bg-cover bg-center"
+      className="w-full md:w-[32%] h-full md:h-[300px] bg-cover bg-center"
       style={{
         backgroundImage: `url(${url})`,
       }}
@@ -68,7 +68,7 @@ const GameCard: React.FC<GameCardProps> = ({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center space-x-2 font-semibold">
+            <div className="flex flex-wrap items-center gap-2 font-semibold">
               {tags.map((tag, index) => (
                 <span
                   key={index}
