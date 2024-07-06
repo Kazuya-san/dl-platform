@@ -10,7 +10,7 @@ declare global {
 class Singleton {
   static async getInstance() {
     if (!global._mongoClientPromise) {
-      global._mongoClientPromise = connect(uri, options);
+      global._mongoClientPromise = connect(uri as string, options);
     }
     return global._mongoClientPromise;
   }
