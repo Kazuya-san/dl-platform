@@ -8,7 +8,7 @@ export interface TournamentListingDocument {
   prize: string;
   entryFee: string;
   startTime?: string;
-  startDate?: string;
+  startDate?: Date | string;
   teamSize?: string;
 }
 

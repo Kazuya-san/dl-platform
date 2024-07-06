@@ -17,6 +17,8 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { LoadingSpinner } from "@/components/ui/spinner";
+import { createTournament } from "@/actions/tournament.actions";
+import { format } from "date-fns";
 
 interface TournamentFormProps {
   children: ReactNode;
@@ -41,16 +43,16 @@ export type TournamentFormData = z.infer<typeof formSchema>;
 
 export function TournamentForm({ children }: TournamentFormProps) {
   const { toast } = useToast();
-  //   const { mutate: submitForm, isPending: isLoading } = useMutation({
-  //     mutationFn: () => {},
-  //     onSuccess: () => {
-  //       form.reset();
-  //       toast({
-  //         title: "Tournament Created",
-  //         description: "Tournament created successfully",
-  //       });
-  //     },
-  //   });
+  const { mutate: submitForm, isPending: isLoading } = useMutation({
+    mutationFn: createTournament,
+    onSuccess: () => {
+      form.reset();
+      toast({
+        title: "Tournament Created",
+        description: "Tournament created successfully",
+      });
+    },
+  });
 
   const form = useForm<TournamentFormData>({
     resolver: zodResolver(formSchema),
@@ -67,6 +69,12 @@ export function TournamentForm({ children }: TournamentFormProps) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    const { startDate, ...rest } = values;
+    const formattedDate = format(startDate as Date, "yyyy-MM-dd");
+    submitForm({
+      ...rest,
+      startDate: formattedDate,
+    });
   }
 
   return (
@@ -256,7 +264,7 @@ export function TournamentForm({ children }: TournamentFormProps) {
         />
         <div className="flex items-center justify-end gap-2">
           {children}
-          {false && <LoadingSpinner />}
+          {isLoading && <LoadingSpinner />}
         </div>
       </form>
     </Form>

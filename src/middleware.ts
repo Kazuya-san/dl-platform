@@ -4,6 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 export default async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const user = await getSession(req, res);
+
+  if (user && req.nextUrl.pathname === "/auth") {
+    return NextResponse.redirect(req.nextUrl.origin + "/dashboard");
+  }
+
   if (!user && req.nextUrl.pathname !== "/") {
     return NextResponse.redirect(req.nextUrl.origin + "/auth");
   }
