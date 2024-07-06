@@ -14,7 +14,7 @@ import { mongoose } from "@/utils/db";
 import { TournamentForm } from "./forms/tournament/TournamentForm";
 
 export async function TournamentListingCreateModal() {
-  const { user } = (await getSession()) as Session;
+  //   const { user } = (await getSession()) as Session;
 
   return (
     <Dialog>

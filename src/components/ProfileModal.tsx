@@ -13,10 +13,10 @@ import { mongoose } from "@/utils/db";
 import { ProfileForm } from "@/components/forms/profile/ProfileForm";
 
 export async function ProfileModal() {
-  const { user } = (await getSession()) as Session;
-  if (user) {
+  const user = (await getSession()) as Session;
+  if (user && user?.user) {
     await mongoose;
-    const profile = await ProfileModel.findOne({ userId: user.sub });
+    const profile = await ProfileModel.findOne({ userId: user?.user?.sub });
     if (profile) return null;
   } else return null;
 
@@ -30,7 +30,7 @@ export async function ProfileModal() {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <ProfileForm userId={user.sub}>
+          <ProfileForm userId={user?.user?.sub}>
             <DialogFooter>
               <Button type="submit">Save changes</Button>
             </DialogFooter>
