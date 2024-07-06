@@ -51,6 +51,7 @@ export function TournamentForm({ children }: TournamentFormProps) {
         title: "Tournament Created",
         description: "Tournament created successfully",
       });
+      setTimeout(() => document.getElementById("closeDialog")?.click(), 500);
     },
   });
 

@@ -8,14 +8,14 @@ export default async function middleware(req: NextRequest) {
   if (user && req.nextUrl.pathname === "/auth") {
     return NextResponse.redirect(req.nextUrl.origin + "/dashboard");
   }
-
   if (!user && req.nextUrl.pathname !== "/") {
-    return NextResponse.redirect(req.nextUrl.origin + "/auth");
+    if (req.nextUrl.pathname === "/auth") return res;
+    else return NextResponse.redirect(req.nextUrl.origin + "/auth");
   }
 }
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|cod.PNG|dashboard|auth|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|cod.PNG|dashboard|_next/image|favicon.ico).*)",
   ],
 };
