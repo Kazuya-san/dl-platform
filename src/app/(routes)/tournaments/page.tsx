@@ -4,9 +4,15 @@ import { TournamentListingCreateModal } from "@/components/TournamentListingCrea
 import { Button } from "@/components/ui/button";
 
 export default async function Tournaments() {
-  const { tournaments } = await cmgApi.get("/api/core/tournaments/active", {
-    "group-id": "134",
-  });
+  const { tournaments } = await cmgApi.get(
+    "/api/core/tournaments/active",
+    {
+      "group-id": "134",
+    },
+    {
+      cacheOptions: { next: { revalidate: 3600 } },
+    }
+  );
 
   return (
     <div className="flex flex-col items-center gap-y-2">

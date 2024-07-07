@@ -3,9 +3,15 @@ import GameCard from "@/components/GameCard";
 import { cmgApi } from "@/apiHandler/fetcherBase";
 
 export default async function ProfileClient() {
-  const { tournaments } = await cmgApi.get("/api/core/tournaments/active", {
-    "group-id": "36",
-  });
+  const { tournaments } = await cmgApi.get(
+    "/api/core/tournaments/active",
+    {
+      "group-id": "36",
+    },
+    {
+      cacheOptions: { next: { revalidate: 3600 } },
+    }
+  );
 
   // if (isLoading) {
   //   return (

@@ -6,15 +6,18 @@ export const customFetch = async (
   url: string,
   method: string,
   body?: any,
-  headers?: Record<string, string | boolean>
+  headers?: Record<string, string | boolean | any>
 ) => {
   try {
     const startTime = new Date().getTime();
     let token: GetAccessTokenResult | null = null;
-    const { auth, ...restHeaders } = (headers ?? { auth: false }) as Record<
-      string,
-      string | boolean
-    >;
+    const {
+      auth,
+      cacheOptions = {},
+      ...restHeaders
+    } = (headers ?? {
+      auth: false,
+    }) as Record<string, string | boolean>;
     if (auth) {
       token = await getAccessToken();
       const endTime = new Date().getTime();
@@ -22,6 +25,7 @@ export const customFetch = async (
     }
     const res = await fetch(url, {
       method,
+      ...(Object.keys(cacheOptions).length > 0 && cacheOptions),
       headers: {
         ...(token && { Authorization: `Bearer ${token?.accessToken}` }),
         "Content-Type": "application/json",

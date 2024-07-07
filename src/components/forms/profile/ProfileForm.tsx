@@ -58,6 +58,10 @@ export function ProfileForm({ children, userId }: ProfileFormProps) {
       dob: format(values.dob, "yyyy-MM-dd"),
       userId,
       completed: true,
+      // exp: 123,
+      // level: 2,
+      // matches: 4,
+      // wins: 2,
     });
   }
 

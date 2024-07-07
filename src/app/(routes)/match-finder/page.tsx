@@ -2,9 +2,15 @@ import { cmgApi } from "@/apiHandler/fetcherBase";
 import GameCard from "@/components/GameCard";
 
 export default async function MatchFinder() {
-  const { tournaments } = await cmgApi.get("/api/core/tournaments/active", {
-    "group-id": "84",
-  });
+  const { tournaments } = await cmgApi.get(
+    "/api/core/tournaments/active",
+    {
+      "group-id": "84",
+    },
+    {
+      cacheOptions: { next: { revalidate: 3600 } },
+    }
+  );
 
   return (
     <div className="flex flex-col md:flex-row px-8 gap-4 justify-center md:flex-wrap md:h-[calc(100vh-85px)]">

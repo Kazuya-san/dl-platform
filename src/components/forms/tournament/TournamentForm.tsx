@@ -222,6 +222,9 @@ export function TournamentForm({ children }: TournamentFormProps) {
                   onChange={field.onChange}
                   name={field.name}
                   value={field.value}
+                  disabled={(date) =>
+                    date < new Date(new Date().toDateString())
+                  }
                 />
               </FormControl>
               <FormDescription>

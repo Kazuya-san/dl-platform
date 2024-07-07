@@ -15,9 +15,10 @@ interface Props {
   onChange: (date: Date) => void;
   name: string;
   value?: Date;
+  disabled?: (date: Date) => boolean;
 }
 
-export function DatePicker({ onChange, value }: Props) {
+export function DatePicker({ onChange, value, disabled }: Props) {
   const [date, setDate] = useState<Date | undefined>(value);
 
   return (
@@ -48,6 +49,7 @@ export function DatePicker({ onChange, value }: Props) {
             setDate(selectedDate);
             onChange(selectedDate);
           }}
+          {...(disabled && { disabled })}
           fromYear={1960}
           toYear={2030}
         />

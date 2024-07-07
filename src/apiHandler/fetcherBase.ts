@@ -5,7 +5,7 @@ interface QueryParams {
 }
 
 interface FetchOptions {
-  headers?: Record<string, string | boolean>;
+  headers?: Record<string, string | boolean | any>;
   body?: any;
 }
 
@@ -53,7 +53,7 @@ class Api {
   async get(
     pathName?: string,
     query?: QueryParams,
-    headers?: Record<string, string | boolean>
+    headers?: Record<string, string | boolean | any>
   ) {
     return this.request("GET", pathName, { headers }, query);
   }
@@ -61,7 +61,7 @@ class Api {
   async post(
     pathName: string,
     body: any,
-    headers?: Record<string, string | boolean>
+    headers?: Record<string, string | boolean | any>
   ) {
     return this.request("POST", pathName, { headers, body });
   }
@@ -69,12 +69,15 @@ class Api {
   async put(
     pathName: string,
     body: any,
-    headers?: Record<string, string | boolean>
+    headers?: Record<string, string | boolean | any>
   ) {
     return this.request("PUT", pathName, { headers, body });
   }
 
-  async delete(pathName: string, headers?: Record<string, string | boolean>) {
+  async delete(
+    pathName: string,
+    headers?: Record<string, string | boolean | any>
+  ) {
     return this.request("DELETE", pathName, { headers });
   }
 }
