@@ -18,7 +18,7 @@ import { TbLogout } from "react-icons/tb";
 export function Navbar() {
   const { user, isLoading } = useUser();
   return (
-    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center px-8 lg:px-14 mx-auto h-full max-h-[70px] backdrop-blur-lg z-[10]">
+    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center max-w-[98vw] px-8 mx-auto h-full max-h-[70px] backdrop-blur-lg z-[10]">
       <div className="flex items-center md:col-span-3">
         <Link href="/dashboard">
           {/*  eslint-disable-next-line @next/next/no-img-element */}
@@ -36,7 +36,7 @@ export function Navbar() {
         {user ? (
           // eslint-disable-next-line @next/next/no-img-element
 
-          <DropdownMenu modal={false}>
+          <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
               <Avatar>
                 <AvatarImage src={user.picture as string} />
@@ -44,7 +44,6 @@ export function Navbar() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="cursor-pointer">
-              {/* <DropdownMenuSeparator /> */}
               {navbarLinks.map((item) => (
                 <DropdownMenuItem key={item.id}>
                   <Link
@@ -56,6 +55,8 @@ export function Navbar() {
                   </Link>
                 </DropdownMenuItem>
               ))}
+              <DropdownMenuSeparator />
+
               <DropdownMenuItem>
                 <a
                   href="/api/auth/logout"
