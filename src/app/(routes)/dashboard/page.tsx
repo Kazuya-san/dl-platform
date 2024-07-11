@@ -1,6 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import GameCard from "@/components/GameCard";
 import { cmgApi } from "@/apiHandler/fetcherBase";
+import Hero from "@/components/home/Hero";
+import Event from "@/components/home/Events";
+import Games from "@/components/home/Games";
+import Section from "@/components/home/Sections";
+import Footer from "@/components/Footer";
 
 export default async function ProfileClient() {
   const { tournaments } = await cmgApi.get(
@@ -28,7 +33,7 @@ export default async function ProfileClient() {
   // }
 
   return (
-    <div className="flex flex-col md:flex-row px-8 gap-4 justify-center md:flex-wrap md:h-[calc(100vh-85px)]">
+    <div className="px-8">
       {/* {new Array(6).fill(1).map((i, index) => (
         <GameCard
           key={index * i}
@@ -41,7 +46,7 @@ export default async function ProfileClient() {
           entryFee="FREE ENTRY"
         />
       ))} */}
-      {tournaments.map((i: any, index: number) => (
+      {/* {tournaments.map((i: any, index: number) => (
         <GameCard
           key={index}
           url={i.backgroundUrl}
@@ -54,7 +59,29 @@ export default async function ProfileClient() {
           startDate={i.startTime}
           tournamentPath={i.tournamentPath}
         />
-      ))}
+      ))} */}
+      <Hero />
+      <Event />
+      <Games />
+      <Section
+        sectionName="Arena"
+        title="Competetive Gaming"
+        description="Experience the thrill of competitive gaming in our state-of-the-art arena. Engage in adrenaline-pumping battles, showcase your gaming prowess, and climb the ranks to become the ultimate champion. Whether you're a seasoned player or just starting out, the Arena awaits you!"
+        buttonText="Enter Arena"
+        buttonVariant="default"
+        dir="rtl"
+        imageSrc="https://gam3s.gg/_next/image/?url=https%3A%2F%2Fassets.polkastarter.gg%2Fthe_beacon_harvesters_31b105f968%2Fthe_beacon_harvesters_31b105f968.jpg&w=2048&q=75"
+      />
+      <Section
+        sectionName="Leaderboard"
+        title="Ranking System"
+        description="Our ranking system rewards skill and teamwork in competitive matches. Players climb ranks based on performance metrics like win-loss ratio and individual contributions. Reach higher ranks for exclusive rewards, tournaments, and community recognition, creating a competitive and rewarding gaming experience for all."
+        buttonText="See Leaderboard"
+        buttonVariant="default"
+        dir="ltr"
+        imageSrc="https://gam3s.gg/_next/image/?url=https%3A%2F%2Fassets.polkastarter.gg%2FSparkball_Splash_No_Name_f01592f622%2FSparkball_Splash_No_Name_f01592f622.jpg&w=1920&q=75"
+      />
+      <Footer />
     </div>
   );
 }

@@ -48,7 +48,7 @@ const GameCard: React.FC<GameCardProps> = ({
 }) => {
   return (
     <Card
-      className="w-full md:w-[32%] h-full md:h-[300px] bg-cover bg-center"
+      className="w-full md:w-[32%] h-full md:min-h-[300px] bg-cover bg-center"
       style={{
         backgroundImage: `url(${url})`,
       }}

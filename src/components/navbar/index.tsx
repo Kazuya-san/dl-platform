@@ -18,7 +18,7 @@ import { TbLogout } from "react-icons/tb";
 export function Navbar() {
   const { user, isLoading } = useUser();
   return (
-    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center max-w-[92vw] sm:max-w-[95vw] lg:max-w-[98vw] px-8 mx-auto h-full max-h-[70px] backdrop-blur-lg z-[10]">
+    <nav className="fixed top-0 w-full flex md:grid md:grid-cols-12 items-center justify-center max-w-[96vw] sm:max-w-[97vw] md:max-w-[98vw] px-8 mx-auto h-full max-h-[70px] backdrop-blur-2xl z-[10]">
       <div className="flex items-center md:col-span-3">
         <Link href="/dashboard">
           {/*  eslint-disable-next-line @next/next/no-img-element */}
