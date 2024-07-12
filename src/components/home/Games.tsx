@@ -21,12 +21,12 @@ async function Games() {
           return (
             <Card
               key={index}
-              className="w-full md:w-[32%] relative min-h-[400px] bg-cover bg-center bg-no-repeat overflow-hidden"
+              className="w-full md:w-[32%] relative min-h-[500px] bg-cover bg-center bg-no-repeat overflow-hidden"
               style={{
                 backgroundImage: `url(${game.image})`,
               }}
             >
-              <div className="w-[102%] h-full absolute top-[85%]">
+              <div className="w-[102%] h-full absolute top-[86%]">
                 <CardHeader className="backdrop-brightness-[0.1]">
                   <CardTitle>{game.name}</CardTitle>
                 </CardHeader>

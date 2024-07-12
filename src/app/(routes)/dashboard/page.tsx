@@ -66,7 +66,7 @@ export default async function ProfileClient() {
       <Section
         sectionName="Arena"
         title="Competetive Gaming"
-        description="Experience the thrill of competitive gaming in our state-of-the-art arena. Engage in adrenaline-pumping battles, showcase your gaming prowess, and climb the ranks to become the ultimate champion. Whether you're a seasoned player or just starting out, the Arena awaits you!"
+        description="Experience the thrill of competitive gaming in our state-of-the-art arena. Engage in adrenaline-pumping battles, showcase your gaming prowess, and climb the ranks to become the ultimate champion. Whether you're a seasoned player or just starting out, the Arena awaits you"
         buttonText="Enter Arena"
         buttonVariant="default"
         dir="rtl"

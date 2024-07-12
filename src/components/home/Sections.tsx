@@ -49,7 +49,7 @@ const Section: React.FC<SectionProps> = ({
         dir={dir}
       >
         <div className={`${dir === "rtl" ? "text-left" : ""}`}>
-          <h1 className="scroll-m-20 text-3xl sm:text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <h1 className="scroll-m-20 text-3xl sm:text-4xl font-extrabold tracking-tight">
             {title}
           </h1>
           <p className="mt-3 text-sm tracking-wide">{description}</p>
