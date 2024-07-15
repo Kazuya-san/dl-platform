@@ -5,7 +5,7 @@ async function Event() {
   const { tournaments } = await cmgApi.get(
     "/api/core/tournaments/active",
     {
-      "group-id": "36",
+      "group-id": "134",
     },
     {
       cacheOptions: { next: { revalidate: 3600 } },
