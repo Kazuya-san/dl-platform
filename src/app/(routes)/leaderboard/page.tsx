@@ -57,17 +57,17 @@ const LeaderBoard = async () => {
                 }
               >
                 <td className="py-2 px-4 border-b dark:border-gray-600 text-center text-gray-900 dark:text-gray-100 flex items-center justify-center">
-                  <a href={entry.profileUrl} target="_blank">
-                    <div className="flex items-center gap-2 w-[100px]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={entry.avatarUrl}
-                        alt={entry.name}
-                        className="rounded-full w-14 h-14"
-                      />
-                      <p className="text-left">{entry.name}</p>
-                    </div>
-                  </a>
+                  {/* <a href={entry.profileUrl} target="_blank"> */}
+                  <div className="flex items-center gap-2 w-[100px]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={entry.avatarUrl}
+                      alt={entry.name}
+                      className="rounded-full w-14 h-14"
+                    />
+                    <p className="text-left">{entry.name}</p>
+                  </div>
+                  {/* </a> */}
                 </td>
                 <td className="py-2 px-4 border-b dark:border-gray-600 text-center text-gray-900 dark:text-gray-100">
                   {entry.rank}

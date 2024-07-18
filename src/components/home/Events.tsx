@@ -1,19 +1,7 @@
 import GameCard from "@/components/GameCard";
-import { cmgApi } from "@/apiHandler/fetcherBase";
+import { data } from "@/utils/games";
 
 async function Event() {
-  const { tournaments } = await cmgApi.get(
-    "/api/core/tournaments/active",
-    {
-      "group-id": "134",
-    },
-    {
-      cacheOptions: { next: { revalidate: 3600 } },
-    }
-  );
-
-  const data = tournaments.slice(0, 3);
-
   return (
     <div className="sm:container py-8">
       <div className="border-l-4 border-primary pl-2 my-3">
@@ -21,7 +9,7 @@ async function Event() {
           Events & Tournaments
         </h1>
       </div>
-      <div className="flex flex-col md:flex-row gap-6 justify-center md:flex-wrap">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8">
         {data.map((i: any, index: number) => (
           <GameCard
             key={index}

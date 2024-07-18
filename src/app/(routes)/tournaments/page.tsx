@@ -15,11 +15,11 @@ export default async function Tournaments() {
   );
 
   return (
-    <div className="flex flex-col items-center gap-y-2">
-      <div className="flex w-full items-center gap-y-2 justify-end mr-24">
+    <>
+      <div className="flex w-full items-center gap-y-2 justify-end px-8 mb-2">
         <TournamentListingCreateModal />
       </div>
-      <div className="flex flex-col md:flex-row px-8 gap-4 justify-center md:flex-wrap md:h-[calc(100vh-85px)]">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 md:h-[calc(100vh-85px)]">
         {tournaments.map((i: any, index: number) => (
           <GameCard
             key={index}
@@ -35,6 +35,6 @@ export default async function Tournaments() {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
