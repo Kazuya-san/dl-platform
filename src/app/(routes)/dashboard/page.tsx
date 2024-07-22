@@ -70,7 +70,7 @@ export default async function ProfileClient() {
         buttonText="Enter Arena"
         buttonVariant="default"
         dir="rtl"
-        imageSrc="https://gam3s.gg/_next/image/?url=https%3A%2F%2Fassets.polkastarter.gg%2Fthe_beacon_harvesters_31b105f968%2Fthe_beacon_harvesters_31b105f968.jpg&w=2048&q=75"
+        imageSrc="https://i.pinimg.com/originals/98/65/f4/9865f485b2bde51729ffed07207d6663.jpg"
       />
       <Section
         sectionName="Leaderboard"
