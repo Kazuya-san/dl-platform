@@ -5,6 +5,8 @@ import {
   TournamentListingModel,
 } from "@/schemas/tournament-listing.schema";
 import { mongoose } from "@/utils/db";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { UTApi } from "uploadthing/server";
 
 const utapi = new UTApi();
@@ -24,6 +26,7 @@ export const createTournament = async (tournament: any) => {
           bannerUrl,
         });
       if (newTournament) {
+        revalidatePath("/tournaments");
         return { success: true };
       }
     } else {

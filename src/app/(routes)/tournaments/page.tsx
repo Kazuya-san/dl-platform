@@ -8,6 +8,8 @@ import {
 } from "@/schemas/tournament-listing.schema";
 import { mongoose } from "@/utils/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function Tournaments() {
   // const { tournaments } = await cmgApi.get(
   //   "/api/core/tournaments/active",

@@ -49,8 +49,8 @@ export const formSchema = z.object({
     .string()
     .optional()
     .refine(
-      (val) => /^([01]\d|2[0-3]):([0-5]\d) PM|AM$/.test(val ?? ""),
-      "Start time must be in HH:MM format"
+      (val) => /^(?:[01]?\d|2[0-3]):([0-5]\d) (?:AM|PM)$/.test(val ?? ""),
+      "Start time must be in H:MM or HH:MM format"
     ),
   startDate: z.date().optional(),
   countdown: z

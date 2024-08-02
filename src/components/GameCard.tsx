@@ -53,7 +53,7 @@ const GameCard: React.FC<GameCardProps> = ({
         backgroundImage: `url(${url})`,
       }}
     >
-      <div className="w-full h-full backdrop-brightness-[0.6]">
+      <div className="w-full h-full backdrop-brightness-[0.15]">
         {/* <a
           href={`https://www.checkmategaming.com${tournamentPath}`}
           target="_blank"
