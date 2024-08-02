@@ -19,6 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import { LoadingSpinner } from "@/components/ui/spinner";
 import { createTournament } from "@/actions/tournament.actions";
 import { format } from "date-fns";
+import { FileUploader } from "@/components/FileUploader";
 
 interface TournamentFormProps {
   children: ReactNode;
@@ -26,17 +27,46 @@ interface TournamentFormProps {
 }
 
 export const formSchema = z.object({
-  url: z.string().url("Invalid URL"),
+  banner: z
+    .array(z.custom<File>())
+    .min(1, "Banner Image is required")
+    .nonempty("Banner is required"),
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
-  image: z.string().url("Invalid URL"),
   tags: z.array(z.string()).nonempty("At least one tag is required"),
-  prize: z.string().min(1, "Prize is required"),
-  entryFee: z.string().min(1, "Entry fee is required"),
-  startTime: z.string().optional(),
+  prize: z
+    .string()
+    .min(1, "Prize is required")
+    .refine((val) => /^\d+$/.test(val ?? ""), "Prize must be a numeric value"),
+  entryFee: z
+    .string()
+    .min(1, "Entry fee is required")
+    .refine(
+      (val) => /^\d+$/.test(val ?? ""),
+      "Entry fee must be a numeric value"
+    ),
+  startTime: z
+    .string()
+    .optional()
+    .refine(
+      (val) => /^([01]\d|2[0-3]):([0-5]\d) PM|AM$/.test(val ?? ""),
+      "Start time must be in HH:MM format"
+    ),
   startDate: z.date().optional(),
-  countdown: z.string().optional(),
-  teamSize: z.string().optional(),
+  countdown: z
+    .string()
+    .optional()
+    .refine(
+      (val) => /^\d*$/.test(val ?? ""),
+      "Countdown must be a numeric value"
+    ),
+  teamSize: z
+    .string()
+    .optional()
+    .refine(
+      (val) => /^\d*$/.test(val ?? ""),
+      "Team size must be a numeric value"
+    ),
 });
 
 export type TournamentFormData = z.infer<typeof formSchema>;
@@ -58,10 +88,9 @@ export function TournamentForm({ children }: TournamentFormProps) {
   const form = useForm<TournamentFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      url: "",
+      banner: [],
       title: "",
       description: "",
-      image: "",
       tags: [],
       prize: "",
       entryFee: "",
@@ -69,13 +98,27 @@ export function TournamentForm({ children }: TournamentFormProps) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    const { startDate, ...rest } = values;
+    const { startDate, banner, ...rest } = values;
     const formattedDate = format(startDate as Date, "yyyy-MM-dd");
-    submitForm({
+    const formData = new FormData();
+    if (values.banner && values.banner?.length > 0) {
+      const blobs = [values.banner![0]].map(
+        (file) => new Blob([file], { type: file.type })
+      );
+      formData.append("banner", blobs[0]);
+    }
+    const finalData = {
       ...rest,
       startDate: formattedDate,
-    });
+      files: formData,
+    };
+    // console.log({
+    //   ...rest,
+    //   url: values.url ?? undefined,
+    //   image: values.image ?? undefined,
+    //   startDate: formattedDate,
+    // }, 'log')
+    submitForm(finalData);
   }
 
   return (
@@ -83,15 +126,15 @@ export function TournamentForm({ children }: TournamentFormProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="url"
+          name="banner"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>URL</FormLabel>
+              <FormLabel>Banner</FormLabel>
               <FormControl>
-                <Input placeholder="Background Image URL" {...field} />
+                <FileUploader onChange={field.onChange} files={field.value} />
               </FormControl>
               <FormDescription>
-                The URL of the background image for the tournament.
+                The banner image for the tournament.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -122,22 +165,6 @@ export function TournamentForm({ children }: TournamentFormProps) {
               </FormControl>
               <FormDescription>
                 A brief description of the tournament.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Image URL</FormLabel>
-              <FormControl>
-                <Input placeholder="Image URL" {...field} />
-              </FormControl>
-              <FormDescription>
-                The URL of the image associated with the tournament.
               </FormDescription>
               <FormMessage />
             </FormItem>

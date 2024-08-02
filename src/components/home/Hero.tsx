@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="sm:container py-8 dark:md:bg-primary rounded-lg">
+    <div className="sm:container w-full !max-w-[1390px] py-8 dark:md:bg-primary rounded-lg">
       {/* Grid */}
       <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
         <div>

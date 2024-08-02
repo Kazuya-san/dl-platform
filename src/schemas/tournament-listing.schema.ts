@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 export interface TournamentListingDocument {
-  url: string;
+  bannerUrl: string;
   title: string;
   description: string;
   tags: string[];
@@ -13,7 +13,7 @@ export interface TournamentListingDocument {
 }
 
 const TournamentListingSchema = new Schema<TournamentListingDocument>({
-  url: { type: String, required: true },
+  bannerUrl: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   tags: { type: [String], required: true },

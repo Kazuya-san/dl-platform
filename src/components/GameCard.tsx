@@ -12,7 +12,7 @@ type GameCardProps = {
   url: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   tags: string[];
   prize: string;
   entryFee: string;
@@ -61,7 +61,11 @@ const GameCard: React.FC<GameCardProps> = ({
         <CardHeader>
           <CardTitle>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image} alt={title} className="w-38 h-24" />
+            {image ? (
+              <img src={image} alt={title} className="w-38 h-24" />
+            ) : (
+              title
+            )}
           </CardTitle>
           <CardDescription className="font-bold text-white">
             {description}

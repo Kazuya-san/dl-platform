@@ -2,17 +2,25 @@ import { cmgApi } from "@/apiHandler/fetcherBase";
 import GameCard from "@/components/GameCard";
 import { TournamentListingCreateModal } from "@/components/TournamentListingCreateModal";
 import { Button } from "@/components/ui/button";
+import {
+  TournamentListingDocument,
+  TournamentListingModel,
+} from "@/schemas/tournament-listing.schema";
+import { mongoose } from "@/utils/db";
 
 export default async function Tournaments() {
-  const { tournaments } = await cmgApi.get(
-    "/api/core/tournaments/active",
-    {
-      "group-id": "134",
-    },
-    {
-      cacheOptions: { next: { revalidate: 3600 } },
-    }
-  );
+  // const { tournaments } = await cmgApi.get(
+  //   "/api/core/tournaments/active",
+  //   {
+  //     "group-id": "134",
+  //   },
+  //   {
+  //     cacheOptions: { next: { revalidate: 3600 } },
+  //   }
+  // );
+  await mongoose;
+  const tournaments =
+    await TournamentListingModel.find<TournamentListingDocument>({});
 
   return (
     <>
@@ -20,18 +28,19 @@ export default async function Tournaments() {
         <TournamentListingCreateModal />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8">
-        {[tournaments[0]].map((i: any, index: number) => (
+        {tournaments.map((i, index: number) => (
           <GameCard
             key={index}
-            url={i.coverUrl}
-            title={i.groupName}
-            description={i.name}
-            image={i.gameImageUrl}
+            url={i.bannerUrl}
+            title={i?.title}
+            description={i?.description}
             tags={["NOVICE", "Amateur", "VETERAN", "PRO"]}
-            prize={`$${i.prize} PRIZE`}
-            entryFee={i.cost > 0 ? `$${i.cost} ENTRY` : "FREE ENTRY"}
-            startDate={i.startTime}
-            tournamentPath={i.tournamentPath}
+            prize={`$${i?.prize} PRIZE`}
+            entryFee={
+              Number(i?.entryFee) > 0 ? `$${i?.entryFee} ENTRY` : "FREE ENTRY"
+            }
+            startDate={i?.startDate as string}
+            startTime={i?.startTime}
           />
         ))}
       </div>
