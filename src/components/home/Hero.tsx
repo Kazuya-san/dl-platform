@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="sm:container w-full !max-w-[1390px] py-8 dark:md:bg-primary rounded-lg">
+    <div className="sm:container w-full !max-w-[1380px] py-8 dark:md:bg-primary rounded-lg">
       {/* Grid */}
       <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
         <div>
@@ -27,10 +27,8 @@ const Hero = () => {
         <div className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className="rounded-md"
+            className="rounded-md object-cover h-[400px]"
             src="https://i.pinimg.com/originals/1d/46/27/1d4627f8b0a294c5e98e87f6cdbeaa8d.jpg"
-            width={800}
-            height={700}
             alt="Image Description"
           />
         </div>

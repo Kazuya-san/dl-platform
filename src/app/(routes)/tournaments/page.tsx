@@ -36,7 +36,7 @@ export default async function Tournaments() {
             url={i.bannerUrl}
             title={i?.title}
             description={i?.description}
-            tags={["NOVICE", "Amateur", "VETERAN", "PRO"]}
+            tags={i?.tags}
             prize={`$${i?.prize} PRIZE`}
             entryFee={
               Number(i?.entryFee) > 0 ? `$${i?.entryFee} ENTRY` : "FREE ENTRY"

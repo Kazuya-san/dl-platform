@@ -16,7 +16,7 @@ async function Games() {
           Games
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {AAA_GAMES.map((game, index) => {
           return (
             <Card

@@ -9,11 +9,11 @@ async function Event() {
           Events & Tournaments
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {data.map((i: any, index: number) => (
           <GameCard
             key={index}
-            url={i.backgroundUrl}
+            url={"https://utfs.io/f/db1e4b07-fe43-4a97-8506-af680cfa03eb-1svj1"}
             title={i.groupName}
             description={i.name}
             image={i.gameImageUrl}

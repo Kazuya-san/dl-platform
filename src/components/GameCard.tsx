@@ -48,7 +48,7 @@ const GameCard: React.FC<GameCardProps> = ({
 }) => {
   return (
     <Card
-      className="w-full h-full bg-cover bg-center"
+      className="w-full h-full bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: `url(${url})`,
       }}
@@ -76,7 +76,9 @@ const GameCard: React.FC<GameCardProps> = ({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className={`text-xs px-2 py-1 rounded ${tagColors[index % 6]}`}
+                className={`text-xs px-2 py-1 rounded uppercase ${
+                  tagColors[index % 6]
+                }`}
               >
                 {tag}
               </span>
