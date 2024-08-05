@@ -210,22 +210,6 @@ export function TournamentForm({ children }: TournamentFormProps) {
         />
         <FormField
           control={form.control}
-          name="entryFee"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Entry Fee</FormLabel>
-              <FormControl>
-                <Input placeholder="Entry Fee" {...field} />
-              </FormControl>
-              <FormDescription>
-                The entry fee for the tournament.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="startTime"
           render={({ field }) => (
             <FormItem>
@@ -258,6 +242,22 @@ export function TournamentForm({ children }: TournamentFormProps) {
               </FormControl>
               <FormDescription>
                 The start date of the tournament.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="entryFee"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Entry Fee</FormLabel>
+              <FormControl>
+                <Input placeholder="Entry Fee" {...field} />
+              </FormControl>
+              <FormDescription>
+                The entry fee for the tournament.
               </FormDescription>
               <FormMessage />
             </FormItem>
