@@ -18,8 +18,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { LoadingSpinner } from "@/components/ui/spinner";
 import { createTournament } from "@/actions/tournament.actions";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { FileUploader } from "@/components/FileUploader";
+import { convertTo12Hour } from "@/lib/utils";
 
 interface TournamentFormProps {
   children: ReactNode;
@@ -49,7 +50,7 @@ export const formSchema = z.object({
     .string()
     .optional()
     .refine(
-      (val) => /^(?:[01]?\d|2[0-3]):([0-5]\d) (?:AM|PM)$/.test(val ?? ""),
+      (val) => /^(?:[01]?\d|2[0-3]):([0-5]\d)$/.test(val ?? ""),
       "Start time must be in H:MM or HH:MM format"
     ),
   startDate: z.date().optional(),
@@ -93,13 +94,14 @@ export function TournamentForm({ children }: TournamentFormProps) {
       description: "",
       tags: [],
       prize: "",
-      entryFee: "",
+      entryFee: "0",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const { startDate, banner, ...rest } = values;
+    const { startDate, banner, startTime, ...rest } = values;
     const formattedDate = format(startDate as Date, "yyyy-MM-dd");
+    const formattedTimeto12 = convertTo12Hour(startTime as string);
     const formData = new FormData();
     if (values.banner && values.banner?.length > 0) {
       const blobs = [values.banner![0]].map(
@@ -110,14 +112,10 @@ export function TournamentForm({ children }: TournamentFormProps) {
     const finalData = {
       ...rest,
       startDate: formattedDate,
+      startTime: formattedTimeto12,
       files: formData,
     };
-    // console.log({
-    //   ...rest,
-    //   url: values.url ?? undefined,
-    //   image: values.image ?? undefined,
-    //   startDate: formattedDate,
-    // }, 'log')
+
     submitForm(finalData);
   }
 
@@ -187,7 +185,9 @@ export function TournamentForm({ children }: TournamentFormProps) {
                   }
                 />
               </FormControl>
-              <FormDescription>Tags describing the tournament.</FormDescription>
+              <FormDescription>
+                Tags describing the tournament. eg tag1, tag2
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -229,7 +229,7 @@ export function TournamentForm({ children }: TournamentFormProps) {
             <FormItem>
               <FormLabel>Start Time</FormLabel>
               <FormControl>
-                <Input placeholder="Start Time" {...field} />
+                <Input type="time" placeholder="Start Time" {...field} />
               </FormControl>
               <FormDescription>
                 The start time of the tournament.

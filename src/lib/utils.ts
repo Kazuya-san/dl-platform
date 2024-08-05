@@ -14,3 +14,14 @@ export const debounce = (fn: Function, delay: number) => {
 };
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
+
+export function convertTo12Hour(time24: string) {
+  const [hours, minutes] = time24.split(":");
+  let hours12 = parseInt(hours);
+  const ampm = hours12 >= 12 ? "PM" : "AM";
+
+  hours12 = hours12 % 12 || 12; // Convert '0' to '12' for midnight and handle noon
+  const minutesPadded = minutes.padStart(2, "0");
+
+  return `${hours12}:${minutesPadded} ${ampm}`;
+}
