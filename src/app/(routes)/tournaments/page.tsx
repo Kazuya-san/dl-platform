@@ -7,6 +7,7 @@ import {
   TournamentListingModel,
 } from "@/schemas/tournament-listing.schema";
 import { mongoose } from "@/utils/db";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -31,19 +32,20 @@ export default async function Tournaments() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8">
         {tournaments.map((i, index: number) => (
-          <GameCard
-            key={index}
-            url={i.bannerUrl}
-            title={i?.title}
-            description={i?.description}
-            tags={i?.tags}
-            prize={`$${i?.prize} PRIZE`}
-            entryFee={
-              Number(i?.entryFee) > 0 ? `$${i?.entryFee} ENTRY` : "FREE ENTRY"
-            }
-            startDate={i?.startDate as string}
-            startTime={i?.startTime}
-          />
+          <Link href={`/tournaments/${i._id}`} key={index}>
+            <GameCard
+              url={i.bannerUrl}
+              title={i?.title}
+              description={i?.description}
+              tags={i?.tags}
+              prize={`$${i?.prize} PRIZE`}
+              entryFee={
+                Number(i?.entryFee) > 0 ? `$${i?.entryFee} ENTRY` : "FREE ENTRY"
+              }
+              startDate={i?.startDate as string}
+              startTime={i?.startTime}
+            />
+          </Link>
         ))}
       </div>
     </>

@@ -9,6 +9,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +24,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/Drarig29/brackets-viewer.js/dist/brackets-viewer.min.js"
+      ></Script>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
-export interface TournamentListingDocument {
+export interface TournamentListingDocument extends Document {
   bannerUrl: string;
   title: string;
   description: string;
