@@ -13,6 +13,7 @@ import { mongoose } from "@/utils/db";
 import { ProfileForm } from "@/components/forms/profile/ProfileForm";
 
 export async function ProfileModal() {
+  //USING SESSION HERE CAUSES ALL PAGES TO BE DYNAMIC
   const user = (await getSession()) as Session;
   if (user && user?.user) {
     await mongoose;

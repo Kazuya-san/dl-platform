@@ -42,11 +42,14 @@ export default async function Tournaments({
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://dl-one.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-footer.b49f032a.png&w=48&q=75"
-          className="w-[20px] h-[40px] md:w-[35px] md:h-[60px]"
-          alt="logo"
+          src="/gslogo.png"
+          className="w-[100px] h-[100px]"
+          alt="gamer society logo"
         />
-        <div className="max-w-[100vw] w-full overflow-x-auto">
+        <div
+          className="max-w-[10
+        0vw] w-full overflow-x-auto"
+        >
           <Bracket />
         </div>
       </div>
