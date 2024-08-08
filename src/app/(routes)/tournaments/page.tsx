@@ -30,23 +30,34 @@ export default async function Tournaments() {
       <div className="flex w-full items-center gap-y-2 justify-end px-8 mb-2">
         <TournamentListingCreateModal />
       </div>
+      {tournaments.length === 0 && (
+        <div className="flex flex-col items-center justify-center gap-y-4 text-center mt-10">
+          <h1 className="text-3xl font-bold">No tournaments found</h1>
+          <p className="text-lg">
+            Create your first tournament to get started!
+          </p>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8">
-        {tournaments.map((i, index: number) => (
-          <Link href={`/tournaments/${i._id}`} key={index}>
-            <GameCard
-              url={i.bannerUrl}
-              title={i?.title}
-              description={i?.description}
-              tags={i?.tags}
-              prize={`$${i?.prize} PRIZE`}
-              entryFee={
-                Number(i?.entryFee) > 0 ? `$${i?.entryFee} ENTRY` : "FREE ENTRY"
-              }
-              startDate={i?.startDate as string}
-              startTime={i?.startTime}
-            />
-          </Link>
-        ))}
+        {tournaments.length > 0 &&
+          tournaments.map((i, index: number) => (
+            <Link href={`/tournaments/${i._id}`} key={index}>
+              <GameCard
+                url={i.bannerUrl}
+                title={i?.title}
+                description={i?.description}
+                tags={i?.tags}
+                prize={`$${i?.prize} PRIZE`}
+                entryFee={
+                  Number(i?.entryFee) > 0
+                    ? `$${i?.entryFee} ENTRY`
+                    : "FREE ENTRY"
+                }
+                startDate={i?.startDate as string}
+                startTime={i?.startTime}
+              />
+            </Link>
+          ))}
       </div>
     </>
   );
