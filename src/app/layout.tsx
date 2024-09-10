@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { QueryClientProvider } from "@/providers/query-client.provider";
 
 import Script from "next/script";
+import { Suspense } from "react";
+import Custom404 from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,17 +28,19 @@ export default async function RootLayout({
         src="https://cdn.jsdelivr.net/gh/Drarig29/brackets-viewer.js/dist/brackets-viewer.min.js"
       ></Script>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <QueryClientProvider>
-            <UserProvider>{children}</UserProvider>
-            <Toaster />
-          </QueryClientProvider>
-        </ThemeProvider>
+        <Suspense fallback={<Custom404 />}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <QueryClientProvider>
+              <UserProvider>{children}</UserProvider>
+              <Toaster />
+            </QueryClientProvider>
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );
