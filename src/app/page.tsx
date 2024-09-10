@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 
-export default async () => {
+const index = async () => {
   redirect("/dashboard");
 };
+
+export default index;
