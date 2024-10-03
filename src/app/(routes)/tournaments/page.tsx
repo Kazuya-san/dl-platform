@@ -41,7 +41,7 @@ export default function TournamentPage() {
             className="w-full h-[200px] sm:h-[400px] object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-          <CardHeader className="relative min-h-[150px] z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between space-y-4 sm:space-y-0 pt-4 sm:pt-0">
+          <CardHeader className="relative min-h-[150px] flex flex-col sm:flex-row items-start sm:items-end justify-between space-y-4 sm:space-y-0 pt-4 sm:pt-0">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                 <svg
