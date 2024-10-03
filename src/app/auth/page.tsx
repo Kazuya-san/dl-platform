@@ -1,85 +1,65 @@
-"use client";
-
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaTwitch } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa6";
-import { IoMdArrowForward } from "react-icons/io";
+import { FaXTwitter, FaTwitch } from 'react-icons/fa6';
+import { FcGoogle } from 'react-icons/fc';
+import { IoMdArrowForward } from 'react-icons/io';
+import Image from 'next/image';
+import { Mail } from '@/assets';
+import { AuthButton } from '@/components/auth-button';
 
 const AUTH_BUTTONS = [
   {
-    icon: <FaGoogle className="mr-2" size={22} />,
-    name: "Google",
-    providerId: "google-oauth2",
+    icon: <FcGoogle size={26} />,
+    name: 'Google',
+    providerId: 'google-oauth2',
   },
   {
-    icon: <FaTwitch className="mr-2" size={22} />,
-    name: "Twitch",
-    providerId: "twitch",
+    icon: <FaTwitch color="#9146FF" size={26} />,
+    name: 'Twitch',
+    providerId: 'twitch',
   },
   {
-    icon: <FaXTwitter className="mr-2" size={22} />,
-    name: "Twitter",
-    providerId: "twitter",
+    icon: <FaXTwitter size={26} />,
+    name: 'Twitter',
+    providerId: 'twitter',
   },
 ];
 
 export default function Auth() {
   return (
-    <>
-      <AuthOptions />
-    </>
-  );
-}
-
-interface AuthOptionsProps {
-  emailHandler?: (val: boolean) => void;
-}
-
-//5CCCJBTQMW1W1D7WVUBCNVN8
-
-const AuthOptions = ({ emailHandler }: AuthOptionsProps) => {
-  return (
-    <>
+    <div>
       <div className="grid gap-2 text-center">
-        <h1 className="text-3xl font-bold">Hello Katz</h1>
-        <p className="text-balance text-muted-foreground">Continue with</p>
+        <h1 className="text-[28px] 1920:text-[36px] font-bold text-primary font-[family-name:var(--font-nippo)]">
+          Sign up to OneShot
+        </h1>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-4 mt-[48px]">
         {AUTH_BUTTONS.map((button) => (
-          <a
+          <AuthButton
             key={button.name}
+            icon={button.icon}
+            name={button.name}
             href={`/api/auth/login?connection=${button.providerId}`}
-          >
-            <Button
-              variant="outline"
-              className="w-full transition-all duration-200 hover:-translate-y-[2px]"
-            >
-              <div className="flex">
-                {button.icon} {button.name}
-              </div>
-            </Button>
-          </a>
+          />
         ))}
       </div>
-      <div className="flex justify-center items-center">
-        <hr className="w-full" />
-        <p className="text-balance text-muted-foreground mx-2">or</p>
-
-        <hr className="w-full" />
+      <div className="flex justify-center items-center my-4 lg:my-8 1920:my-12">
+        <p className="text-balance text-[14px] 1920:text-[16px] text-muted-foreground mx-2">
+          OR
+        </p>
       </div>
       <div className="grid gap-4">
-        <a href={`/api/auth/login?connection=email`}>
-          <Button
-            variant="default"
-            className="w-full flex items-center justify-center"
-          >
-            Continue With Email
-            <IoMdArrowForward className="ml-1" size={18} />
-          </Button>
-        </a>
+        <AuthButton
+          icon={<Image src={Mail} alt="email icon" />}
+          name="Email"
+          href={`/api/auth/login?connection=Username-Password-Authentication`}
+          rightIcon={<IoMdArrowForward />}
+        />
+        <p className="text-[12px] 1920:text-[14px] text-muted-foreground">
+          By continuing you agree to our{' '}
+          <strong className="text-foreground">User Agreement</strong> and
+          acknowledge that you understand our{' '}
+          <strong className="text-foreground">Privacy Policy</strong>
+        </p>
       </div>
-    </>
+    </div>
   );
-};
+}

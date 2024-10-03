@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import brackets from "@/utils/brackets.json";
+import { NextResponse } from 'next/server';
+import brackets from '@/lib/brackets.json';
 
 export const GET = async () => {
   return NextResponse.json({

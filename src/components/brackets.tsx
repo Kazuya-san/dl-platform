@@ -1,8 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
-import { LoadingSpinner } from "@/components/ui/spinner";
+'use client';
+import { useEffect, useState } from 'react';
+import { LoadingSpinner } from './ui/loading-spinner';
 
-const URL = "/api/brackets";
+const URL = '/api/brackets';
 
 function Bracket() {
   const [loading, setLoading] = useState(true);

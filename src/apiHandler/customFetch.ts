@@ -1,16 +1,16 @@
-"use server";
+'use server';
 
-import { getAccessToken, GetAccessTokenResult } from "@auth0/nextjs-auth0";
+import { getAccessToken, GetAccessTokenResult } from '@auth0/nextjs-auth0';
 
 export const customFetch = async (
   url: string,
   method: string,
   body?: any,
-  headers?: Record<string, string | boolean | any>
+  headers?: Record<string, string | boolean | any>,
 ) => {
   try {
-    const startTime = new Date().getTime();
-    let token: GetAccessTokenResult | null = null;
+    // const startTime = new Date().getTime();
+
     const {
       auth,
       cacheOptions = {},
@@ -18,17 +18,20 @@ export const customFetch = async (
     } = (headers ?? {
       auth: false,
     }) as Record<string, string | boolean>;
+    let accessToken = '' as string | undefined;
     if (auth) {
-      token = await getAccessToken();
-      const endTime = new Date().getTime();
-      console.log(endTime - startTime, "diff in getting token");
+      const result = await getAccessToken();
+      accessToken = result.accessToken;
+      // console.log(accessToken);
+      // const endTime = new Date().getTime();
+      // console.log(endTime - startTime, "diff in getting token");
     }
     const res = await fetch(url, {
       method,
       ...(Object.keys(cacheOptions).length > 0 && cacheOptions),
       headers: {
-        ...(token && { Authorization: `Bearer ${token?.accessToken}` }),
-        "Content-Type": "application/json",
+        ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+        'Content-Type': 'application/json',
         ...restHeaders,
       },
       body: body ? JSON.stringify(body) : undefined,
