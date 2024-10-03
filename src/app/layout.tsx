@@ -5,7 +5,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Navbar from '@/components/navbar';
 import { ThemeProvider } from '@/providers/theme-provider';
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/Footer';
 import Script from 'next/script';
 
 const nippo = localFont({
