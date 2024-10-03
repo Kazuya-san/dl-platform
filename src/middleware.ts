@@ -9,10 +9,10 @@ export default async function middleware(req: NextRequest) {
   const user = await getSession(req, res);
 
   if (user && pathname === '/auth') {
-    return NextResponse.redirect(req.nextUrl.origin + '/reservation');
+    return NextResponse.redirect(req.nextUrl.origin + '/tournaments');
   }
   if (user && pathname === '/') {
-    return NextResponse.redirect(req.nextUrl.origin + '/reservation');
+    return NextResponse.redirect(req.nextUrl.origin + '/tournaments');
   }
 
   if (user && pathname.startsWith('/api')) {

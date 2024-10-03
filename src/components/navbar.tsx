@@ -20,7 +20,7 @@ import { Home, Trophy, BarChart2, Users, LogOut } from 'lucide-react';
 const noNavRoutes = ['/auth'];
 
 const menuItems = [
-  { name: 'Profile', icon: Home, href: '/profile' },
+  // { name: 'Profile', icon: Home, href: '/profile' },
   { name: 'Tournaments', icon: Trophy, href: '/tournaments' },
   // { name: 'Leaderboard', icon: BarChart2, href: '/leaderboard' },
   // { name: 'Teams', icon: Users, href: '/teams' },
