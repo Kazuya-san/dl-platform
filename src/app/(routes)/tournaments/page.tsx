@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -91,6 +97,24 @@ export default function TournamentPage() {
     },
   ];
 
+  const prizes = [
+    {
+      name: '$25,000',
+      description: '1st prize',
+      details: 'Cash prize for the tournament winner.',
+    },
+    {
+      name: 'Zeke digital jersey',
+      description: '2nd prize',
+      details: 'Exclusive in-game item. Limited edition digital jersey.',
+    },
+    {
+      name: 'Alley katz gaming card',
+      description: '3rd prize',
+      details: 'Rare collectible card from the Alley Katz series.',
+    },
+  ];
+
   const getTierColor = (tier: string) => {
     switch (tier) {
       case 'Diamond':
@@ -110,7 +134,7 @@ export default function TournamentPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Card className="max-w-[1600px] mx-auto my-8 border-card overflow-hidden">
+      <Card className="max-w-[1800px] mx-auto my-8 border-card overflow-hidden">
         <div className="relative">
           <Image
             src={Banner}
@@ -166,11 +190,11 @@ export default function TournamentPage() {
         </div>
         <CardContent>
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 mt-4">
+            <TabsList className="grid w-full h-fit grid-cols-2 lg:grid-cols-6 mt-4">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="brackets">Brackets</TabsTrigger>
-              {/* <TabsTrigger value="teams">Participating Teams</TabsTrigger>
-              <TabsTrigger value="stream">Stream</TabsTrigger> */}
+              <TabsTrigger value="prizes">Prizes</TabsTrigger>
+              {/* <TabsTrigger value="stream">Stream</TabsTrigger> */}
             </TabsList>
             <TabsContent value="overview">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
@@ -230,11 +254,11 @@ export default function TournamentPage() {
                   <CardHeader className="bg-gradient-to-r from-green-700 to-primary/75 text-white">
                     <CardTitle className="text-2xl font-bold flex items-center justify-center">
                       <Tv2 className="w-6 h-6 mr-2" />
-                      Tournament Highlights
+                      Highlights
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-0 h-[430px]">
-                    <div className="aspect-video">
+                  <CardContent className="p-0 h-[430px] w-full">
+                    <div className="aspect-video h-[430px] w-full">
                       <iframe
                         width="100%"
                         height="100%"
@@ -243,6 +267,7 @@ export default function TournamentPage() {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
+                        className="h-[430px] w-full"
                       ></iframe>
                     </div>
                   </CardContent>
@@ -259,15 +284,38 @@ export default function TournamentPage() {
                 </CardContent>
               </Card>
             </TabsContent>
-            <TabsContent value="teams">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Participating Teams</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Team list goes here.</p>
-                </CardContent>
-              </Card>
+            <TabsContent value="prizes">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr mt-6">
+                {prizes.map((prize, index) => (
+                  <Card
+                    key={index}
+                    className="bg-background text-white border-gray-800 flex flex-col items-center justify-center"
+                  >
+                    <CardContent className="p-6 flex-grow">
+                      <div className="relative w-32 h-32 mx-auto mb-4">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary to-green-600 rounded-full" />
+                        <div className="absolute inset-1 bg-accent rounded-full flex items-center justify-center">
+                          <span className="text-5xl font-bold">
+                            {index + 1}
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-center mb-2">
+                        {prize.name}
+                      </h3>
+                      <p className="text-gray-400 text-center mb-4">
+                        {prize.description}
+                      </p>
+                      <p className="text-sm text-gray-500">{prize.details}</p>
+                    </CardContent>
+                    <CardFooter className="mt-auto">
+                      <Button disabled className="max-w-[120px] w-full">
+                        Claim
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
             </TabsContent>
             <TabsContent value="stream">
               <Card>

@@ -55,13 +55,13 @@ export default async function ProfilePage() {
             variant="ghost"
             className="text-white text-xs sm:text-sm max-w-[120px] rounded-full"
           >
-            @{userObj.given_name}
+            {link({ size: 28 })}
           </Button>
         ))}
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Recent Matches */}

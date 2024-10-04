@@ -1,20 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { LoadingSpinner } from './ui/loading-spinner';
+import brackets from '@/lib/brackets.json';
 
 const URL = '/api/brackets';
 
 function Bracket() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function render() {
-      const data = await fetch(URL)
-        .then((res) => res.json())
-        .then((data) => {
-          setLoading(false);
-          return data.brackets;
-        });
-
+      // await fetch(URL)
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     setLoading(false);
+      //     return data.brackets;
+      //   });
+      const data = brackets;
       (window as any).bracketsViewer.render({
         stages: data.stage,
         matches: data.match,

@@ -1,5 +1,6 @@
 import { Trophy, Person, Social, Leaderboards, Emblem } from '@/assets';
 import { StaticImageData } from 'next/image';
+import { FaTwitch, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 export const features = [
   {
@@ -111,7 +112,7 @@ export const profileData = {
   joinDate: '10/5/2024',
   earnings: '$100,000',
   recentMatches: ['W', 'L', 'W', 'W', 'T'],
-  socialLinks: ['CatsAk1mbo', '@CatsAkimbo', 'CatsAkimbo', 'CatsAkimbo'],
+  socialLinks: [FaTwitch, FaTiktok, FaYoutube],
   trophies: [
     {
       name: 'RED BULL LEAGUE OF ITS OWN 2024',
