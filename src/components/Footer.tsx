@@ -11,11 +11,11 @@ export const Footer = () => {
 
   if (noNavRoutes.includes(pathname)) return null;
   return (
-    <div className="bg-card flex flex-col justify-center w-full h-[309px] pt-5 z-50 relative">
+    <div className="bg-card flex flex-col justify-center w-full h-[209px] pt-5 z-50 relative">
       <div className="bg-dark w-full flex items-center justify-center">
         <Image src={OslogoFull} alt="oneshot.gg-logo" />{' '}
       </div>
-      <div className="flex flex-col-reverse md:flex-row items-center gap-4 mb-6 mt-5 justify-around w-full">
+      <div className="flex flex-col-reverse md:flex-row items-center gap-4 mb-6 justify-around w-full">
         <div className="text-foreground text-[14px] sm:text-[16px] sm:mt-10 text-center flex sm:w-full items-center justify-center text-wrap w-[90%]">
           © {new Date().getFullYear()} Destruction Labz, All rights reserved.
         </div>

@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { Fortnite, Trophy as GTrophy } from '@/assets';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,
   TableBody,
@@ -9,323 +12,249 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import {
-  Trophy,
-  Users,
-  Award,
-  Activity,
-  GamepadIcon,
-  MonitorIcon,
-} from 'lucide-react';
-import { Banner, Person } from '@/assets';
 
-const profileData = {
-  user: {
-    name: 'CATSAKIMBO',
-    avatar: '/placeholder.svg?height=80&width=80',
-    banner: '/placeholder.svg?height=256&width=1024',
-    rank: 'SILVER 80',
-    earnings: 15920,
-  },
-  stats: {
-    xpEarned: 11456,
-    tournamentsEntered: 24,
-    profileViews: 80,
-  },
-  recentMatches: [
-    { result: 'W', variant: 'success' },
-    { result: 'L', variant: 'destructive' },
-    { result: 'W', variant: 'success' },
-    { result: 'W', variant: 'success' },
-    { result: 'T', variant: 'default' },
-  ],
-  winRate: 67,
-  record: [
-    {
-      game: 'Call of Duty: Modern Warfare III',
-      platform: 'Xbox',
-      wins: 1,
-      losses: 1,
-    },
-    {
-      game: 'Call of Duty: Modern Warfare III',
-      platform: 'Xbox',
-      wins: 1,
-      losses: 1,
-    },
-    {
-      game: 'Call of Duty: Modern Warfare III',
-      platform: 'Xbox',
-      wins: 1,
-      losses: 1,
-    },
-    {
-      game: 'Call of Duty: Modern Warfare III',
-      platform: 'Xbox',
-      wins: 1,
-      losses: 1,
-    },
-    {
-      game: 'Call of Duty: Modern Warfare III',
-      platform: 'Xbox',
-      wins: 1,
-      losses: 1,
-    },
-  ],
-  achievements: [
-    { name: 'First Blood', icon: Award },
-    { name: 'Sharpshooter', icon: Award },
-    { name: 'Team Player', icon: Award },
-    { name: 'Survivor', icon: Award },
-    { name: 'Tactician', icon: Award },
-    { name: 'Veteran', icon: Award },
-  ],
-  trophies: [
-    { name: 'Tournament Winner', icon: Trophy },
-    { name: 'MVP', icon: Trophy },
-    { name: 'Killstreak Master', icon: Trophy },
-    { name: 'Objective King', icon: Trophy },
-  ],
-  teams: [
-    { name: 'Alpha Squad', icon: Users },
-    { name: 'Beta Team', icon: Users },
-    { name: 'Delta Force', icon: Users },
-    { name: 'Omega Group', icon: Users },
-    { name: 'Zeta Unit', icon: Users },
-    { name: 'Epsilon Crew', icon: Users },
-  ],
-};
+import { Star, Trophy, TrophyIcon } from 'lucide-react';
+import { PersonIcon } from '@radix-ui/react-icons';
+import { FaXbox } from 'react-icons/fa6';
+import { getSession } from '@auth0/nextjs-auth0';
+import { profileData } from '@/content';
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const user = await getSession();
+  const userObj = user?.user!;
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-8 lg:p-12 mt-[65px]">
-      <div className="max-w-[1600px] mx-auto">
-        {/* Header */}
-        <div className="relative h-48 md:h-64 lg:h-[450px] rounded-lg overflow-hidden mb-6 lg:mb-8 border border-card">
+    <div className="min-h-screen max-w-[1800px] mx-auto bg-black text-white">
+      {/* Profile Header */}
+      <div className="bg-gradient-to-r from-primary to-[#f7b500] p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <div className="flex items-center space-x-4 space-y-2 text-accent-foreground mb-4 sm:mb-0">
           <Image
-            src={Banner}
-            alt="Profile banner"
-            layout="fill"
-            objectPosition="top"
-            objectFit="cover"
+            src={userObj.picture}
+            alt={userObj.name}
+            width={50}
+            height={50}
+            className="rounded-full"
           />
-          <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 lg:bottom-8 lg:left-8 flex items-end">
-            <Image
-              src={Person}
-              alt="Avatar"
-              width={80}
-              height={80}
-              className="rounded-full border-4 border-background"
-            />
-            <div className="ml-4">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                {profileData.user.name}
-              </h1>
-              <div className="flex items-center mt-2">
-                <Badge
-                  variant="secondary"
-                  className="mr-2 text-sm md:text-base"
-                >
-                  {profileData.user.rank}
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="bg-yellow-500 text-background text-sm md:text-base"
-                >
-                  EARNINGS ${profileData.user.earnings.toLocaleString()}
-                </Badge>
-              </div>
+          <div>
+            <h1 className="text-2xl sm:text-4xl font-bold">{userObj.name}</h1>
+            <div className="flex items-center space-x-2">
+              <TrophyIcon width={20} height={20} className="sm:w-6 sm:h-6" />
+              <span className="text-sm sm:text-base">{profileData.rank}</span>
             </div>
+            <p className="text-xs sm:text-sm">Joined {profileData.joinDate}</p>
           </div>
         </div>
+        <Button className="w-full sm:w-auto">Add Friend</Button>
+      </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Left Column */}
-          <div className="lg:col-span-2 space-y-6 lg:space-y-8">
-            <Card className="border-card">
-              <CardHeader>
-                <CardTitle>Activity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-48 md:h-64 lg:h-80 bg-muted rounded-md flex items-center justify-center">
-                  <Activity className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 text-muted-foreground" />
+      {/* Social Links */}
+      <div className="bg-[#1c1c1c] p-2 flex flex-wrap justify-start pl-4 sm:pl-6 space-x-2 sm:space-x-4">
+        {profileData.socialLinks.map((link, index) => (
+          <Button
+            key={index}
+            normal
+            variant="ghost"
+            className="text-white text-xs sm:text-sm max-w-[120px] rounded-full"
+          >
+            @{userObj.given_name}
+          </Button>
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Recent Matches */}
+          <Card className="flex flex-col sm:flex-row justify-between gap-5 bg-transparent border-none">
+            <Card className="rounded-none flex-1 mb-4 sm:mb-0">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-sm sm:text-base">
+                  RECENT MATCHES
+                </CardTitle>
+                <div className="flex space-x-1">
+                  {profileData.recentMatches.map((result, index) => (
+                    <span
+                      key={index}
+                      className={`w-4 h-4 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-lg font-bold ${
+                        result === 'W'
+                          ? 'bg-green-500'
+                          : result === 'L'
+                            ? 'bg-red-500'
+                            : 'bg-yellow-500'
+                      }`}
+                    >
+                      {result}
+                    </span>
+                  ))}
                 </div>
-              </CardContent>
+              </CardHeader>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              <Card className="border-card">
-                <CardHeader>
-                  <CardTitle>Recent Matches</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-between mb-4">
-                    {profileData.recentMatches.map((match, index) => (
-                      <Badge
-                        key={index}
-                        variant={
-                          match.variant as
-                            | 'destructive'
-                            | 'default'
-                            | 'secondary'
-                            | 'outline'
-                            | null
-                            | undefined
-                        }
-                        className="text-lg md:text-xl lg:text-2xl px-3 py-1"
-                      >
-                        {match.result}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                      {profileData.winRate}%
-                    </div>
-                    <div className="text-sm md:text-base lg:text-lg text-muted-foreground mt-2">
-                      Win Rate
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="border-card">
-                <CardHeader>
-                  <CardTitle>Stats</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm md:text-base lg:text-lg mb-2">
-                      <span>XP Earned</span>
-                      <span>{profileData.stats.xpEarned.toLocaleString()}</span>
-                    </div>
-                    <Progress value={66} className="h-2 md:h-3" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm md:text-base lg:text-lg mb-2">
-                      <span>Tournaments Entered</span>
-                      <span>{profileData.stats.tournamentsEntered}</span>
-                    </div>
-                    <Progress value={40} className="h-2 md:h-3" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm md:text-base lg:text-lg mb-2">
-                      <span>Profile Views</span>
-                      <span>{profileData.stats.profileViews}</span>
-                    </div>
-                    <Progress value={20} className="h-2 md:h-3" />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card className="border-card">
-              <CardHeader>
-                <CardTitle>Record</CardTitle>
+            {/* Earnings */}
+            <Card className="rounded-none flex-1">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-sm sm:text-base">EARNINGS</CardTitle>
+                <Star className="text-[#9eff00] w-4 h-4 sm:w-6 sm:h-6" />
               </CardHeader>
               <CardContent>
+                <p className="text-xl sm:text-2xl font-bold">
+                  {profileData.earnings}
+                </p>
+              </CardContent>
+            </Card>
+          </Card>
+
+          {/* Tabs */}
+          <Tabs defaultValue="trophies">
+            <TabsList className="grid grid-cols-3 bg-card">
+              <TabsTrigger value="trophies" className="text-xs sm:text-sm">
+                TROPHIES
+              </TabsTrigger>
+              <TabsTrigger value="achievements" className="text-xs sm:text-sm">
+                ACHIEVEMENTS
+              </TabsTrigger>
+              <TabsTrigger value="teams" className="text-xs sm:text-sm">
+                TEAMS
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="trophies" className="bg-card p-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {profileData.trophies.map((trophy, index) => (
+                  <Card key={index} className="bg-[#2a2a2a] rounded-none">
+                    <CardHeader className="flex items-center justify-center flex-col p-2 sm:p-4">
+                      <Image
+                        src={GTrophy}
+                        alt="trophy"
+                        width={40}
+                        height={40}
+                        className="w-8 h-8 sm:w-12 sm:h-12"
+                      />
+                      <CardTitle className="text-xs sm:text-sm text-center mt-2">
+                        {trophy.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex items-center justify-center flex-col p-2 sm:p-4">
+                      <p className="text-[10px] sm:text-xs text-gray-400">
+                        {trophy.tier}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-gray-400">
+                        {trophy.date}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-col sm:flex-row justify-between items-center">
+                <Button
+                  variant="link"
+                  className="text-[#9eff00] text-xs sm:text-sm mb-2 sm:mb-0"
+                >
+                  VIEW ALL
+                </Button>
+                <div className="flex items-center space-x-2 text-xs sm:text-sm">
+                  <Trophy className="text-[#9eff00] w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>100</span>
+                  <Trophy className="text-white w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>100</span>
+                  <Trophy className="text-[#cd7f32] w-4 h-4 sm:w-5 sm:h-5" />
+                  <span>100</span>
+                </div>
+              </div>
+            </TabsContent>
+            {/* Add content for other tabs */}
+          </Tabs>
+
+          {/* History */}
+          <Card className="rounded-none">
+            <CardHeader>
+              <CardTitle className="text-sm sm:text-base">HISTORY</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[50%]">Game Title</TableHead>
-                      <TableHead>Platform</TableHead>
-                      <TableHead>W</TableHead>
-                      <TableHead>L</TableHead>
+                      <TableHead className="text-xs sm:text-sm">
+                        Game Title
+                      </TableHead>
+                      <TableHead className="text-xs sm:text-sm">
+                        Platform
+                      </TableHead>
+                      <TableHead className="text-xs sm:text-sm">W</TableHead>
+                      <TableHead className="text-xs sm:text-sm">L</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {profileData.record.map((game, index) => (
-                      <TableRow key={index}>
-                        <TableCell className="font-medium">
-                          {game.game}
+                    {profileData.history.map((game, index) => (
+                      <TableRow
+                        key={index}
+                        className="h-[40px] sm:h-[60px] border-background-2"
+                      >
+                        <TableCell className="text-xs sm:text-sm">
+                          {game.title}
                         </TableCell>
                         <TableCell>
-                          <Badge
-                            variant="outline"
-                            className="text-sm md:text-base"
-                          >
-                            {game.platform === 'Xbox' ? (
-                              <GamepadIcon className="w-4 h-4 mr-1" />
-                            ) : (
-                              <MonitorIcon className="w-4 h-4 mr-1" />
-                            )}
-                            {game.platform}
-                          </Badge>
+                          <FaXbox className="w-4 h-4 sm:w-5 sm:h-5" />
                         </TableCell>
-                        <TableCell>{game.wins}</TableCell>
-                        <TableCell>{game.losses}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                          {game.wins}
+                        </TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                          {game.losses}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-6 lg:space-y-8">
-            <Card className="border-card">
-              <CardHeader>
-                <CardTitle>Achievements</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-3 gap-4 md:gap-6">
-                  {profileData.achievements.map((achievement, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-muted rounded-full mb-2 flex items-center justify-center">
-                        <achievement.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                      </div>
-                      <span className="text-xs md:text-sm text-center">
-                        {achievement.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-card">
-              <CardHeader>
-                <CardTitle>Trophy Case</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                  {profileData.trophies.map((trophy, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <div className="w-20 h-20 md:w-24 md:h-24 bg-muted rounded-full mb-2 flex items-center justify-center">
-                        <trophy.icon className="w-10 h-10 md:w-12 md:h-12 text-yellow-500" />
-                      </div>
-                      <span className="text-xs md:text-sm text-center">
-                        {trophy.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-card">
-              <CardHeader>
-                <CardTitle>Teams</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-3 gap-4 md:gap-6">
-                  {profileData.teams.map((team, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-muted rounded-full mb-2 flex items-center justify-center">
-                        <team.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                      </div>
-                      <span className="text-xs md:text-sm text-center">
-                        {team.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+              <Button
+                variant="link"
+                className="text-[#9eff00] mt-4 text-xs sm:text-sm"
+              >
+                VIEW ALL
+              </Button>
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Right Column - Activity */}
+        <Card className="rounded-none h-full">
+          <CardHeader>
+            <CardTitle className="text-sm sm:text-base">ACTIVITY</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ScrollArea className="h-[500px] sm:h-[1450px]">
+              {profileData.activity.map((item, index) => (
+                <div key={index} className="mb-4 pb-4 border-b border-gray-700">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <PersonIcon className="w-5 h-5 sm:w-7 sm:h-7" />
+                    <span className="font-bold text-xs sm:text-sm">
+                      {userObj.name}
+                    </span>
+                    <span className="text-gray-400 text-xs sm:text-sm">
+                      {item.type}
+                    </span>
+                  </div>
+                  {item.type === 'posted' &&
+                  item.content.startsWith('Image') ? (
+                    <div className="relative h-32 sm:h-56 w-full">
+                      <div className="absolute w-full bg-yellow-200 inset-0 flex items-center justify-center">
+                        <Image
+                          src={Fortnite}
+                          alt="activity"
+                          className="w-full h-full object-cover"
+                        />
+                        {/* <Play className="text-white w-8 h-8 sm:w-12 sm:h-12" /> */}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs sm:text-sm">{item.content}</p>
+                  )}
+                </div>
+              ))}
+            </ScrollArea>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

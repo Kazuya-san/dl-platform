@@ -6,28 +6,107 @@ import Image from 'next/image';
 import { Banner } from '@/assets';
 import { Button } from '@/components/ui/button';
 import Bracket from '@/components/brackets';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { BarChart, Trophy, Tv2 } from 'lucide-react';
 
 export default function TournamentPage() {
-  const leaderboardData = [
+  interface Player {
+    rank: number;
+    name: string;
+    avatar: string;
+    points: number;
+    tier: string;
+  }
+
+  const leaderboardData: Player[] = [
     {
       rank: 1,
-      name: 'PeerContent',
+      name: 'Alex Steele',
       avatar: '/placeholder.svg?height=32&width=32',
+      points: 9800,
+      tier: 'Diamond',
     },
-    { rank: 2, name: 'Venemu', avatar: '/placeholder.svg?height=32&width=32' },
-    { rank: 3, name: 'Rundus', avatar: '/placeholder.svg?height=32&width=32' },
-    { rank: 4, name: 'Elzam', avatar: '/placeholder.svg?height=32&width=32' },
+    {
+      rank: 2,
+      name: 'Samantha Fox',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 9600,
+      tier: 'Diamond',
+    },
+    {
+      rank: 3,
+      name: 'David Kim',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 9400,
+      tier: 'Platinum',
+    },
+    {
+      rank: 4,
+      name: 'Emma Watson',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 9200,
+      tier: 'Platinum',
+    },
     {
       rank: 5,
-      name: 'LandSharks',
+      name: 'Michael Jordan',
       avatar: '/placeholder.svg?height=32&width=32',
+      points: 9000,
+      tier: 'Gold',
     },
     {
       rank: 6,
-      name: 'TheGamingLions',
+      name: 'Sarah Connor',
       avatar: '/placeholder.svg?height=32&width=32',
+      points: 8800,
+      tier: 'Gold',
+    },
+    {
+      rank: 7,
+      name: 'John Doe',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 8600,
+      tier: 'Silver',
+    },
+    {
+      rank: 8,
+      name: 'Jane Smith',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 8400,
+      tier: 'Silver',
+    },
+    {
+      rank: 9,
+      name: 'Chris Evans',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 8200,
+      tier: 'Bronze',
+    },
+    {
+      rank: 10,
+      name: 'Natalie Portman',
+      avatar: '/placeholder.svg?height=32&width=32',
+      points: 8000,
+      tier: 'Bronze',
     },
   ];
+
+  const getTierColor = (tier: string) => {
+    switch (tier) {
+      case 'Diamond':
+        return 'bg-cyan-500 text-cyan-50';
+      case 'Platinum':
+        return 'bg-indigo-500 text-indigo-50';
+      case 'Gold':
+        return 'bg-yellow-500 text-yellow-50';
+      case 'Silver':
+        return 'bg-gray-400 text-gray-50';
+      case 'Bronze':
+        return 'bg-orange-500 text-orange-50';
+      default:
+        return 'bg-gray-500 text-gray-50';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -41,7 +120,7 @@ export default function TournamentPage() {
             className="w-full h-[200px] sm:h-[400px] object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-          <CardHeader className="relative min-h-[150px] flex flex-col sm:flex-row items-start sm:items-end justify-between space-y-4 sm:space-y-0 pt-4 sm:pt-0">
+          <CardHeader className="relative min-h-[150px] flex flex-col sm:flex-row items-end justify-between space-y-4 sm:space-y-0 pt-4 sm:pt-0">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                 <svg
@@ -96,37 +175,65 @@ export default function TournamentPage() {
             <TabsContent value="overview">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                 <Card className="border-card">
-                  <CardHeader>
-                    <CardTitle>Leaderboard</CardTitle>
+                  <CardHeader className="bg-gradient-to-r from-green-700 to-primary/75 text-white">
+                    <CardTitle className="text-2xl font-bold flex items-center justify-center">
+                      <BarChart className="w-6 h-6 mr-2" />
+                      Leaderboard
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-[400px] overflow-auto">
-                    {leaderboardData.map((player) => (
-                      <div
-                        key={player.rank}
-                        className="flex items-center space-x-4 py-4 border-b border-muted-foreground last:border-b-0"
-                      >
-                        <div className="flex-shrink-0 w-8 h-8 text-foreground flex items-center justify-center font-bold">
-                          {player.rank}
+                  <CardContent className="p-0 h-[430px]">
+                    <ScrollArea className="h-[430px]">
+                      {leaderboardData.map((player, index) => (
+                        <div
+                          key={player.rank}
+                          className={`flex items-center space-x-1 sm:space-x-3 px-2 py-3 sm:p-4 ${
+                            index % 2 === 0 ? 'bg-background' : 'bg-muted'
+                          } hover:bg-accent transition-colors duration-200`}
+                        >
+                          <div
+                            className={`flex-shrink-0 w-8 h-8 hidden sm:flex rounded-full ${
+                              player.rank <= 3
+                                ? 'bg-yellow-500 text-yellow-50'
+                                : 'bg-gray-200 text-gray-700'
+                            } items-center justify-center font-bold text-sm`}
+                          >
+                            {player.rank}
+                          </div>
+                          <Avatar className="w-10 h-10 border-2 border-primary">
+                            <AvatarImage
+                              src={player.avatar}
+                              alt={player.name}
+                            />
+                            <AvatarFallback>
+                              {player.name.slice(0, 2).toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-grow">
+                            <p className="font-semibold text-foreground">
+                              {player.name}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {player.tier}
+                            </p>
+                          </div>
+                          <Badge
+                            className={`${getTierColor(player.tier)} font-bold`}
+                          >
+                            {player.points} pts
+                          </Badge>
                         </div>
-                        <Avatar>
-                          <AvatarImage src={player.avatar} alt={player.name} />
-                          <AvatarFallback>
-                            {player.name.slice(0, 2).toUpperCase()}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-grow">
-                          <p className="font-medium">{player.name}</p>
-                        </div>
-                        <Badge variant="secondary">1000 pts</Badge>
-                      </div>
-                    ))}
+                      ))}
+                    </ScrollArea>
                   </CardContent>
                 </Card>
                 <Card className="border-card">
-                  <CardHeader>
-                    <CardTitle>Tournament Highlights</CardTitle>
+                  <CardHeader className="bg-gradient-to-r from-green-700 to-primary/75 text-white">
+                    <CardTitle className="text-2xl font-bold flex items-center justify-center">
+                      <Tv2 className="w-6 h-6 mr-2" />
+                      Tournament Highlights
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-0 h-[430px]">
                     <div className="aspect-video">
                       <iframe
                         width="100%"

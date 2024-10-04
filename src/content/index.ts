@@ -104,3 +104,134 @@ export const regions = [
   //   value: 'antarctica',
   // },
 ];
+
+export const profileData = {
+  username: 'Kazuya',
+  rank: 'GOLD 80',
+  joinDate: '10/5/2024',
+  earnings: '$100,000',
+  recentMatches: ['W', 'L', 'W', 'W', 'T'],
+  socialLinks: ['CatsAk1mbo', '@CatsAkimbo', 'CatsAkimbo', 'CatsAkimbo'],
+  trophies: [
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+    {
+      name: 'RED BULL LEAGUE OF ITS OWN 2024',
+      tier: 'GOLD TIER',
+      date: '10/5/2024',
+    },
+  ],
+  history: [
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+    {
+      title: 'Call of Duty: Modern Warfare III',
+      platform: 'xbox',
+      wins: 1,
+      losses: 1,
+    },
+  ],
+  activity: [
+    { type: 'posted', content: 'Image content here' },
+    { type: 'achieved', content: 'Tournament Name 2024' },
+    { type: 'posted', content: 'AAAAAAAAAAAAAAA $ lunch money' },
+    { type: 'ranked', content: 'RANK GOLD 80' },
+    {
+      type: 'posted',
+      content:
+        "I wish M&K's ult was a command grab that M&K would actually have to aim and land. Like a lunging hug attack that goes on cooldown if it misses.\n\nIt should also definitely be a lot shorter.",
+    },
+    {
+      type: 'posted',
+      content:
+        "I wish M&K's ult was a command grab that M&K would actually have to aim and land. Like a lunging hug attack that goes on cooldown if it misses.\n\nIt should also definitely be a lot shorter.",
+    },
+    { type: 'posted', content: 'Image content here' },
+    { type: 'posted', content: 'Image content here' },
+    { type: 'posted', content: 'AAAAAAAAAAAAAAA $ lunch money' },
+    { type: 'posted', content: 'AAAAAAAAAAAAAAA $ lunch money' },
+    {
+      type: 'posted',
+      content:
+        "I wish M&K's ult was a command grab that M&K would actually have to aim and land. Like a lunging hug attack that goes on cooldown if it misses.\n\nIt should also definitely be a lot shorter.",
+    },
+  ],
+};

@@ -20,7 +20,7 @@ import { Home, Trophy, BarChart2, Users, LogOut } from 'lucide-react';
 const noNavRoutes = ['/auth'];
 
 const menuItems = [
-  // { name: 'Profile', icon: Home, href: '/profile' },
+  { name: 'Profile', icon: Home, href: '/profile' },
   { name: 'Tournaments', icon: Trophy, href: '/tournaments' },
   // { name: 'Leaderboard', icon: BarChart2, href: '/leaderboard' },
   // { name: 'Teams', icon: Users, href: '/teams' },
@@ -68,7 +68,9 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="flex items-center text-base font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className={`flex items-center text-base font-medium text-muted-foreground
+                    ${pathname === item.href && 'text-primary'}
+                    hover:text-primary transition-colors duration-200`}
                 >
                   <item.icon className="mr-2 h-5 w-5" />
                   <span>{item.name}</span>
