@@ -12,3 +12,5 @@ export const debounce = (fn: Function, delay: number) => {
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 };
+
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);

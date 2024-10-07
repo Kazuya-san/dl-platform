@@ -11,9 +11,9 @@ export default async function middleware(req: NextRequest) {
   if (user && pathname === '/auth') {
     return NextResponse.redirect(req.nextUrl.origin + '/tournaments');
   }
-  if (user && pathname === '/') {
-    return NextResponse.redirect(req.nextUrl.origin + '/tournaments');
-  }
+  // if (user && pathname === '/') {
+  //   return NextResponse.redirect(req.nextUrl.origin + '/tournaments');
+  // }
 
   if (user && pathname.startsWith('/api')) {
     const accessToken = user.accessToken;

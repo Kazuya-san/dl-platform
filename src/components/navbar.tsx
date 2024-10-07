@@ -15,13 +15,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Home, Trophy, BarChart2, Users, LogOut } from 'lucide-react';
+import { Trophy, BarChart2, Users, LogOut, HomeIcon } from 'lucide-react';
+import { PersonIcon } from '@radix-ui/react-icons';
 
 const noNavRoutes = ['/auth'];
 
 const menuItems = [
+  { name: 'Home', icon: HomeIcon, href: '/' },
   { name: 'Tournaments', icon: Trophy, href: '/tournaments' },
-  { name: 'Profile', icon: Home, href: '/profile' },
+  { name: 'Profile', icon: PersonIcon, href: '/profile' },
   // { name: 'Leaderboard', icon: BarChart2, href: '/leaderboard' },
   // { name: 'Teams', icon: Users, href: '/teams' },
 ];
@@ -52,32 +54,38 @@ export default function Navbar() {
   if (noNavRoutes.includes(pathname)) return null;
 
   return (
-    <nav className="fixed 2400:relative 0 top-0 w-full z-10 bg-background">
+    <nav className="fixed 2400:relative 0 top-0 w-full z-10 bg-card uppercase">
       <div className="mx-auto py-[16px] px-[32px]">
         <div className="flex items-center sm:items-center justify-between">
-          <Link
-            href={'/'}
-            className={`transition-all duration-300 rounded-full`}
-          >
-            <Image src={OSlogo} alt="oneshot.gg logo" className="w-3/4 h-3/4" />
-          </Link>
+          <div className="flex items-center sm:items-center justify-between gap-10">
+            <Link
+              href={'/'}
+              className={`transition-all duration-300 rounded-full`}
+            >
+              <Image
+                src={OSlogo}
+                alt="oneshot.gg logo"
+                className="w-3/4 h-3/4"
+              />
+            </Link>
 
-          {user && !isLoading && (
-            <div className="hidden lg:flex items-center space-x-6">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center text-base font-medium text-muted-foreground
+            {user && !isLoading && (
+              <div className="hidden lg:flex items-center space-x-6">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`flex items-center text-base lg:text-[16px] 1920:text-[20px] font-medium text-muted-foreground
                     ${pathname === item.href && 'text-primary'}
                     hover:text-primary transition-colors duration-200`}
-                >
-                  <item.icon className="mr-2 h-5 w-5" />
-                  <span>{item.name}</span>
-                </Link>
-              ))}
-            </div>
-          )}
+                  >
+                    {/* <item.icon className="mr-2 h-5 w-5" /> */}
+                    <span>{item.name}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {!user && !isLoading && (
             <Link href={'/auth'}>
@@ -101,7 +109,10 @@ export default function Navbar() {
               <DropdownMenuContent align="end" className="w-56">
                 {menuItems.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <Link href={item.href} className="flex items-center">
+                    <Link
+                      href={item.href}
+                      className="flex items-center text-[16px] uppercase py-2"
+                    >
                       <item.icon className="mr-2 h-4 w-4" />
                       <span>{item.name}</span>
                     </Link>

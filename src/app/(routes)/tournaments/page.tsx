@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardContent,
@@ -14,124 +16,128 @@ import { Button } from '@/components/ui/button';
 import Bracket from '@/components/brackets';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { BarChart, Trophy, Tv2 } from 'lucide-react';
+import { TournamentJoinModal } from '@/components/join-tournament-modal';
+import { useState } from 'react';
+
+interface Player {
+  rank: number;
+  name: string;
+  avatar: string;
+  points: number;
+  tier: string;
+}
+
+const leaderboardData: Player[] = [
+  {
+    rank: 1,
+    name: 'Alex Steele',
+    avatar: '',
+    points: 9800,
+    tier: 'Diamond',
+  },
+  {
+    rank: 2,
+    name: 'Samantha Fox',
+    avatar: '',
+    points: 9600,
+    tier: 'Diamond',
+  },
+  {
+    rank: 3,
+    name: 'David Kim',
+    avatar: '',
+    points: 9400,
+    tier: 'Platinum',
+  },
+  {
+    rank: 4,
+    name: 'Emma Watson',
+    avatar: '',
+    points: 9200,
+    tier: 'Platinum',
+  },
+  {
+    rank: 5,
+    name: 'Michael Jordan',
+    avatar: '',
+    points: 9000,
+    tier: 'Gold',
+  },
+  {
+    rank: 6,
+    name: 'Sarah Connor',
+    avatar: '',
+    points: 8800,
+    tier: 'Gold',
+  },
+  {
+    rank: 7,
+    name: 'John Doe',
+    avatar: '',
+    points: 8600,
+    tier: 'Silver',
+  },
+  {
+    rank: 8,
+    name: 'Jane Smith',
+    avatar: '',
+    points: 8400,
+    tier: 'Silver',
+  },
+  {
+    rank: 9,
+    name: 'Chris Evans',
+    avatar: '',
+    points: 8200,
+    tier: 'Bronze',
+  },
+  {
+    rank: 10,
+    name: 'Natalie Portman',
+    avatar: '',
+    points: 8000,
+    tier: 'Bronze',
+  },
+];
+
+const prizes = [
+  {
+    name: '$25,000',
+    description: '1st prize',
+    details: 'Cash prize for the tournament winner.',
+  },
+  {
+    name: 'Zeke digital jersey',
+    description: '2nd prize',
+    details: 'Exclusive in-game item. Limited edition digital jersey.',
+  },
+  {
+    name: 'Alley katz gaming card',
+    description: '3rd prize',
+    details: 'Rare collectible card from the Alley Katz series.',
+  },
+];
+
+const getTierColor = (tier: string) => {
+  switch (tier) {
+    case 'Diamond':
+      return 'bg-cyan-500 text-cyan-50';
+    case 'Platinum':
+      return 'bg-indigo-500 text-indigo-50';
+    case 'Gold':
+      return 'bg-yellow-500 text-yellow-50';
+    case 'Silver':
+      return 'bg-gray-400 text-gray-50';
+    case 'Bronze':
+      return 'bg-orange-500 text-orange-50';
+    default:
+      return 'bg-gray-500 text-gray-50';
+  }
+};
 
 export default function TournamentPage() {
-  interface Player {
-    rank: number;
-    name: string;
-    avatar: string;
-    points: number;
-    tier: string;
-  }
-
-  const leaderboardData: Player[] = [
-    {
-      rank: 1,
-      name: 'Alex Steele',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 9800,
-      tier: 'Diamond',
-    },
-    {
-      rank: 2,
-      name: 'Samantha Fox',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 9600,
-      tier: 'Diamond',
-    },
-    {
-      rank: 3,
-      name: 'David Kim',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 9400,
-      tier: 'Platinum',
-    },
-    {
-      rank: 4,
-      name: 'Emma Watson',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 9200,
-      tier: 'Platinum',
-    },
-    {
-      rank: 5,
-      name: 'Michael Jordan',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 9000,
-      tier: 'Gold',
-    },
-    {
-      rank: 6,
-      name: 'Sarah Connor',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 8800,
-      tier: 'Gold',
-    },
-    {
-      rank: 7,
-      name: 'John Doe',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 8600,
-      tier: 'Silver',
-    },
-    {
-      rank: 8,
-      name: 'Jane Smith',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 8400,
-      tier: 'Silver',
-    },
-    {
-      rank: 9,
-      name: 'Chris Evans',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 8200,
-      tier: 'Bronze',
-    },
-    {
-      rank: 10,
-      name: 'Natalie Portman',
-      avatar: '/placeholder.svg?height=32&width=32',
-      points: 8000,
-      tier: 'Bronze',
-    },
-  ];
-
-  const prizes = [
-    {
-      name: '$25,000',
-      description: '1st prize',
-      details: 'Cash prize for the tournament winner.',
-    },
-    {
-      name: 'Zeke digital jersey',
-      description: '2nd prize',
-      details: 'Exclusive in-game item. Limited edition digital jersey.',
-    },
-    {
-      name: 'Alley katz gaming card',
-      description: '3rd prize',
-      details: 'Rare collectible card from the Alley Katz series.',
-    },
-  ];
-
-  const getTierColor = (tier: string) => {
-    switch (tier) {
-      case 'Diamond':
-        return 'bg-cyan-500 text-cyan-50';
-      case 'Platinum':
-        return 'bg-indigo-500 text-indigo-50';
-      case 'Gold':
-        return 'bg-yellow-500 text-yellow-50';
-      case 'Silver':
-        return 'bg-gray-400 text-gray-50';
-      case 'Bronze':
-        return 'bg-orange-500 text-orange-50';
-      default:
-        return 'bg-gray-500 text-gray-50';
-    }
-  };
-
+  const [activeTab, setActiveTab] = useState('overview');
+  const [submitted, setSubmitted] = useState(false);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Card className="max-w-[1800px] mx-auto my-8 border-card overflow-hidden">
@@ -181,7 +187,18 @@ export default function TournamentPage() {
               <Badge variant="outline" className="mb-2">
                 Registration Open
               </Badge>
-              <Button className="w-[200px]">Join Tournament</Button>
+              {!submitted ? (
+                <TournamentJoinModal
+                  setTab={() => {
+                    setSubmitted(true);
+                    setActiveTab('prizes');
+                  }}
+                />
+              ) : (
+                <Button className="w-[100px]" size={'sm'} disabled>
+                  Registered
+                </Button>
+              )}
               <span className="text-sm text-muted-foreground">
                 October 30th 2024 | 12:00am
               </span>
@@ -189,7 +206,11 @@ export default function TournamentPage() {
           </CardHeader>
         </div>
         <CardContent>
-          <Tabs defaultValue="overview" className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={(val) => setActiveTab(val)}
+            className="w-full"
+          >
             <TabsList className="grid w-full h-fit grid-cols-2 lg:grid-cols-6 mt-4">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="brackets">Brackets</TabsTrigger>
@@ -241,7 +262,7 @@ export default function TournamentPage() {
                             </p>
                           </div>
                           <Badge
-                            className={`${getTierColor(player.tier)} font-bold`}
+                            className={`${getTierColor(player.tier)} font-bold rounded-sm`}
                           >
                             {player.points} pts
                           </Badge>

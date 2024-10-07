@@ -8,7 +8,7 @@ import { faqData } from '@/content';
 
 export default function FAQSection() {
   return (
-    <div className="max-w-[920px] w-full sm:my-12 sm:mt-24 mx-auto">
+    <div className="max-w-[920px] w-full sm:my-48 sm:mt-24 mx-auto">
       <h1 className="text-[24px] sm:text-[32px] 1920:text-[40px] font-[family-name:var(--font-nippo)] font-bold mb-4">
         FAQ
       </h1>

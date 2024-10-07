@@ -39,6 +39,7 @@ const config: Config = {
         info: 'hsl(var(--info))',
         caution: 'hsl(var(--caution))',
         success: 'hsl(var(--success))',
+        nav: 'hsl(var(--nav))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

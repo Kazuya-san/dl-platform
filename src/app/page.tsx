@@ -10,20 +10,22 @@ import Image from 'next/image';
 
 export default async function Home() {
   return (
-    <div className="px-[32px] md:px-[60px] lg:px-[100px] xl:px-[120px] 2xl:px-[160px] 1920:px-[180px] overflow-hidden">
+    <div>
       <Hero />
-      <Features />
-      {sections.map((section) => (
-        <Section
-          key={section.dir}
-          title={section.title}
-          description={section.description}
-          dir={section.dir}
-          imageSrc={section.image}
-        />
-      ))}
-      <FAQSection />
+      <div className="px-[32px] md:px-[60px] lg:px-[100px] xl:px-[120px] 2xl:px-[160px] 1920:px-[180px] overflow-hidden">
+        <Features />
+        {sections.map((section) => (
+          <Section
+            key={section.dir}
+            title={section.title}
+            description={section.description}
+            dir={section.dir}
+            imageSrc={section.image}
+          />
+        ))}
+      </div>
       <Spot />
+      <FAQSection />
       <ScrollArrow />
     </div>
   );

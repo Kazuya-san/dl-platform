@@ -14,3 +14,6 @@ export { default as Emblem } from './img/emblem.webp';
 export { default as Bolt } from './img/bolt.webp';
 export { default as Banner } from './img/banner.png';
 export { default as Fortnite } from './img/fortnite.jpg';
+export { default as Legend } from './img/legend.jpeg';
+export { default as Controller } from './img/controller.jpeg';
+export { default as GameOver } from './img/game-over.jpeg';
