@@ -7,6 +7,7 @@ export { default as Person } from './svg/person.svg';
 export { default as Social } from './svg/social.svg';
 export { default as DownArrow } from './svg/down_arrow.svg';
 export { default as Mail } from './svg/mail.svg';
+export { default as FortniteLogo } from './svg/FortniteLogo.svg';
 
 export { default as CyberSkull } from './img/cyberskull.webp';
 export { default as Leaderboards } from './img/leaderboard.webp';
@@ -17,3 +18,4 @@ export { default as Fortnite } from './img/fortnite.jpg';
 export { default as Legend } from './img/legend.jpeg';
 export { default as Controller } from './img/controller.jpeg';
 export { default as GameOver } from './img/game-over.jpeg';
+export { default as FortniteCharacter } from './img/fortnite.webp';

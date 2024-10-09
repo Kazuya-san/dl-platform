@@ -191,7 +191,7 @@ export default function TournamentPage() {
                 <TournamentJoinModal
                   setTab={() => {
                     setSubmitted(true);
-                    setActiveTab('prizes');
+                    setActiveTab('brackets');
                   }}
                 />
               ) : (
