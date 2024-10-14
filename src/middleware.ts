@@ -33,10 +33,10 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.next({ request: modifiedReq });
   }
 
-  // if (!user && pathname !== '/') {
-  //   if (pathname === '/auth') return res;
-  //   else return NextResponse.redirect(req.nextUrl.origin + '/auth');
-  // }
+  if (!user && pathname !== '/') {
+    if (pathname === '/auth') return res;
+    else return NextResponse.redirect(req.nextUrl.origin + '/auth');
+  }
 
   return NextResponse.next();
 }
