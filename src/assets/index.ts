@@ -19,3 +19,7 @@ export { default as Legend } from './img/legend.jpeg';
 export { default as Controller } from './img/controller.jpeg';
 export { default as GameOver } from './img/game-over.jpeg';
 export { default as FortniteCharacter } from './img/fortnite.webp';
+export { default as Hero1 } from './img/hero1.png';
+export { default as Hero2 } from './img/hero2.png';
+export { default as Rank1 } from './img/rank1.png';
+export { default as Rank2 } from './img/rank2.png';

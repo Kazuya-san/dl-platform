@@ -30,13 +30,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trophy, Medal, Gift } from 'lucide-react';
 import Link from 'next/link';
+import { Rank1, Rank2 } from '@/assets';
 
 const players = [
   {
     id: 1,
     name: 'Jumz',
-    avatar:
-      'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=200&h=200&fit=crop',
+    avatar: Rank2,
     xp: '350 XP earned 10/07 - 10/14',
     credits: '+30 credits',
     rank: 2,
@@ -44,8 +44,7 @@ const players = [
   {
     id: 2,
     name: 'RaN',
-    avatar:
-      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop',
+    avatar: Rank1,
     xp: '230 XP earned 10/07 - 10/14',
     credits: '+20 credits',
     rank: 1,
@@ -87,7 +86,9 @@ export function Spot() {
                       <Image
                         src={player.avatar}
                         alt={player.name}
-                        layout="fill"
+                        width={200}
+                        height={200}
+                        // layout="fill"
                         objectFit="cover"
                         className="rounded-full border-4 border-primary"
                       />

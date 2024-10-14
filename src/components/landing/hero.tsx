@@ -160,21 +160,19 @@ import {
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Hero1, Hero2 } from '@/assets';
 
 const slides = [
   {
     id: 1,
-    image:
-      'https://c.boom.tv/public%2Fassets%2Fv4%2FPUBG%2FWebbannerBIG_1727966581_1800x539_1727966583.png',
-
+    image: Hero2,
     title: 'Welcome to Our Platform',
     subtitle: 'Discover Amazing Features',
     cta: 'Get Started',
   },
   {
     id: 2,
-    image:
-      'https://c.boom.tv/public%2Fassets%2Fv4%2FPUBG%2FWebbannerBIG_1728329900_1800x539_1728329902.png',
+    image: Hero1,
     title: 'Innovative Solutions',
     subtitle: 'For Your Business Needs',
     cta: 'Learn More',

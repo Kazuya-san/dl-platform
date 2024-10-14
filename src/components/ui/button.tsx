@@ -58,14 +58,14 @@ const Edges = ({
   <>
     <div
       className={cn(
-        'w-1 h-[85%] bg-inherit border-inherit group-hover:bg-inherit absolute -left-1 ' +
+        'w-1 h-[85%] bg-inherit border-inherit group-hover:bg-inherit absolute -left-[3px] ' +
           left,
         edgesClassName,
       )}
     ></div>
     <div
       className={cn(
-        'w-1 h-[85%] bg-inherit border-inherit group-hover:bg-inherit absolute -right-1 ' +
+        'w-1 h-[85%] bg-inherit border-inherit group-hover:bg-inherit absolute -right-[3px] ' +
           right,
         edgesClassName,
       )}
