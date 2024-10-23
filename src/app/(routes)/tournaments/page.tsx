@@ -146,7 +146,7 @@ export default function TournamentPage() {
             src={Banner}
             alt="Tournament Banner"
             width={1600}
-            height={450}
+            height={400}
             className="w-full h-[200px] sm:h-[400px] object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />

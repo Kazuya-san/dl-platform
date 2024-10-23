@@ -13,7 +13,7 @@ export { default as CyberSkull } from './img/cyberskull.webp';
 export { default as Leaderboards } from './img/leaderboard.webp';
 export { default as Emblem } from './img/emblem.webp';
 export { default as Bolt } from './img/bolt.webp';
-export { default as Banner } from './img/banner.png';
+export { default as Banner } from './img/CaliStrongBanner.jpg';
 export { default as Fortnite } from './img/fortnite.jpg';
 export { default as Legend } from './img/legend.jpeg';
 export { default as Controller } from './img/controller.jpeg';
