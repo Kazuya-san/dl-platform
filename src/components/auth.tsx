@@ -47,7 +47,7 @@ export function AuthModal({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[425px]" hideClose>
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Authentication Required</DialogTitle>
         </DialogHeader>
