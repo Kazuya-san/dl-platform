@@ -30,12 +30,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const isAuth = global?.window?.localStorage
-      ? localStorage.getItem('txoAuth')
-      : false;
-    return isAuth === 'true';
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false) 
+  // useState(() => {
+  //   const isAuth = global?.window?.localStorage
+  //     ? localStorage.getItem('txoAuth')
+  //     : false;
+  //   return isAuth === 'true';
+  // });
 
   return (
     <html lang="en">
