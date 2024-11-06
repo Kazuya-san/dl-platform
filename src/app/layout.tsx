@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { Noto_Sans } from 'next/font/google';
@@ -7,6 +9,8 @@ import Navbar from '@/components/navbar';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { Footer } from '@/components/Footer';
 import Script from 'next/script';
+import { AuthModal } from '@/components/auth';
+import { useState } from 'react';
 
 const nippo = localFont({
   src: './fonts/Nippo-Medium.otf',
@@ -16,16 +20,21 @@ const nippo = localFont({
 
 const noto_sans = Noto_Sans({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Oneshot.gg',
-  description: 'The Ultimate Gaming Platform',
-};
+// export const metadata: Metadata = {
+//   title: 'Oneshot.gg',
+//   description: 'The Ultimate Gaming Platform',
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const isAuth = localStorage.getItem('txoAuth');
+    return isAuth === 'true';
+  });
+
   return (
     <html lang="en">
       <Script
@@ -41,9 +50,15 @@ export default function RootLayout({
         >
           <div className="max-w-[2400px] mx-auto">
             <UserProvider>
-              <Navbar />
-              {children}
-              <Footer />
+              {!isAuthenticated ? (
+                <AuthModal setIsAuthenticated={setIsAuthenticated} />
+              ) : (
+                <>
+                  <Navbar />
+                  {children}
+                  <Footer />
+                </>
+              )}
             </UserProvider>
           </div>
         </ThemeProvider>
