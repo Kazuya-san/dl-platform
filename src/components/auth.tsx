@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { authenticate } from '@/actions/auth';
 
 export function AuthModal({
   setIsAuthenticated,
@@ -20,8 +21,13 @@ export function AuthModal({
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
-  const handleAuth = () => {
-    if (username === 'TXO25' && password === 'TXOLETSGO') {
+  const handleAuth = async () => {
+    const creds = {
+      username: username,
+      password: password,
+    };
+    const isAuthenticated = await authenticate(creds);
+    if (isAuthenticated) {
       setOpen(false);
       setIsAuthenticated(true);
       localStorage.setItem('txoAuth', 'true');
