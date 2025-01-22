@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false) 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   // useState(() => {
   //   const isAuth = global?.window?.localStorage
   //     ? localStorage.getItem('txoAuth')
@@ -53,15 +53,15 @@ export default function RootLayout({
         >
           <div className="max-w-[2400px] mx-auto">
             <UserProvider>
-              {!isAuthenticated ? (
+              {/* {!isAuthenticated ? (
                 <AuthModal setIsAuthenticated={setIsAuthenticated} />
-              ) : (
-                <>
-                  <Navbar />
-                  {children}
-                  <Footer />
-                </>
-              )}
+              ) : ( */}
+              <>
+                <Navbar />
+                {children}
+                <Footer />
+              </>
+              {/* )} */}
             </UserProvider>
           </div>
         </ThemeProvider>

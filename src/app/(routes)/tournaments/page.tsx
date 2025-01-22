@@ -220,7 +220,7 @@ export default function TournamentPage() {
             <TabsContent value="overview">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                 <Card className="border-card">
-                  <CardHeader className="bg-gradient-to-r from-green-700 to-primary/75 text-white">
+                  <CardHeader className="bg-gradient-to-r from-green-900 to-primary/45 text-white">
                     <CardTitle className="text-2xl font-bold flex items-center justify-center">
                       <BarChart className="w-6 h-6 mr-2" />
                       Leaderboard
@@ -272,7 +272,7 @@ export default function TournamentPage() {
                   </CardContent>
                 </Card>
                 <Card className="border-card">
-                  <CardHeader className="bg-gradient-to-r from-green-700 to-primary/75 text-white">
+                  <CardHeader className="bg-gradient-to-r from-green-900 to-primary/45 text-white">
                     <CardTitle className="text-2xl font-bold flex items-center justify-center">
                       <Tv2 className="w-6 h-6 mr-2" />
                       Highlights
